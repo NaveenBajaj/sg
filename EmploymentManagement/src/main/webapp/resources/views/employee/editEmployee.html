@@ -1,0 +1,104 @@
+<div>
+	<div class="row">
+		<div class="col-lg-12">
+			<h3 class="page-header">
+				Edit employee <a class="btn btn-success pull-right"
+					ng-click="updateEmployee()"> <i class="fa fa-save append-icon"></i>
+					Update
+				</a>
+			</h3>
+		</div>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">General information</div>
+  		<div class="panel-body">
+	  		<form class="form-horizontal" role="form">
+				<div>
+					<div class="form-group" style="margin-top: 10px;">
+						<label class="control-label col-sm-3" for="modelType">Code:
+						</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" placeholder="Enter code"
+								name="name" ng-model="editEmployee.empCode">
+						</div>
+					</div>
+					<div class="form-group" style="margin-top: 10px;">
+						<label class="control-label col-sm-3" for="modelType">Name:
+						</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" placeholder="Enter name"
+								name="name" ng-model="editEmployee.empName">
+						</div>
+					</div>
+					<div class="form-group" style="margin-top: 10px;">
+						<label class="control-label col-sm-3" for="modelType">Position:
+						</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" placeholder="Enter position"
+								name="name" ng-model="editEmployee.position">
+						</div>
+					</div>
+					<div class="form-group" style="margin-top: 10px;">
+						<label class="control-label col-sm-3" for="modelType">Adhar
+							id: </label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control"
+								placeholder="Enter adhar id" name="name"
+								ng-model="editEmployee.adharId">
+						</div>
+					</div>
+					<div class="form-group" style="margin-top: 10px;">
+						<label class="control-label col-sm-3" for="modelType">Address:
+						</label>
+						<div class="col-sm-6">
+							<textarea class="form-control" name="name"
+								ng-model="editEmployee.address"></textarea>
+						</div>
+					</div>
+					<div class="form-group" style="margin-top: 10px;">
+						<label class="control-label col-sm-3" for="modelType">Mobile
+							No: </label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control"
+								placeholder="Enter mobile number" name="name"
+								ng-model="editEmployee.mobileNumber">
+						</div>
+					</div>
+	
+				</div>
+			</form>
+  		</div>
+	</div>
+	<div class="panel panel-default">
+  		<div class="panel-heading">Account information</div>
+  		<div class="panel-body">
+  			<form class="form-horizontal" role="form">
+				<div>
+					<div class="form-group" style="margin-top: 10px;">
+						<label class="control-label col-sm-3" for="modelType">PF number:
+						</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" placeholder="Enter code"
+								name="name" ng-model="editEmployee.pfNumber">
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="form-group" style="margin-top: 10px;">
+						<label class="control-label col-sm-3" for="modelType">ESIC number:
+						</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" placeholder="Enter code"
+								name="name" ng-model="editEmployee.esicNumber">
+						</div>
+					</div>
+				</div>
+			</form>
+  		</div>
+	</div>
+	
+</div>
+
+
+

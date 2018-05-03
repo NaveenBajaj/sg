@@ -1,0 +1,44 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background: #EAEFF3;border-color: white;height:60px">
+    <div class="navbar-inner">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                    <div style="display:inline-block">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </div>
+                </button> -->
+                <a href="">
+        		<!--  <img class="img-responsive" style=" float:left; display:inline; width:30%;" src="img/leaf.png"> -->
+            		<img class="header-logo-img" style="float:left; display:inline;height:60px;" ui-sref="app.dashboard" ng-src="images/sg_logo_img.jpg">
+            		<img class="header-logo-img" style="float:left; display:inline;height:60px;" ui-sref="app.dashboard" ng-src="images/sg_title_img.jpg">
+        		</a>
+               
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <!-- <ul class="nav navbar-nav">
+                	<li class="" ><a style="color:white;" ui-sref="app.addEmployee"> Add Employee</a></li>
+                    
+                    <li class="" ng-if="authenticated && installer == 'other'"><a href="/wattwatchers/#/app/addSite" data-toggle="collapse" data-target="#navbar-collapse"><span class="fa fa-map-marker"></span> Add Site</a></li>
+                    <li class="" ng-if="authenticated && role == 'other'"><a href="/wattwatchers/#/app/addDevice" data-toggle="collapse" data-target="#navbar-collapse"><span class="glyphicon glyphicon-cog"></span> Add Auditor</a></li>
+                    <li class="" ng-if="role == 'installer'"><a href="/wattwatchers/#/app/firetail/install" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-plug" aria-hidden="true"></i>Install Device</a></li>
+                    <li class="" ng-if="authenticated && role == 'job'"><a href="/wattwatchers/#/app/job" data-toggle="collapse" data-target="#navbar-collapse"><span class="glyphicon glyphicon-tasks"></span> Job</a></li>
+                    <li class="" ng-if="false"><a href="https://www.wattwatchers.com.au/partners/commercial-partners" data-toggle="collapse" data-target="#navbar-collapse"><span class="glyphicon glyphicon-globe"></span> Partners</a></li>
+                   
+                </ul>
+ -->
+                <ul class="nav navbar-nav navbar-right">
+                	<li class="" ><a style="color:black;" ui-sref="app.employee"> Home</a></li>
+                    <li class="" ><a style="color:black;" ui-sref="app.addEmployee"> Add Employee</a></li>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+
+</nav>
