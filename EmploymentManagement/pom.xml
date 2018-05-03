@@ -7,6 +7,9 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>EmploymentManagement Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <properties>
+		<jdk.version>1.8</jdk.version>
+	</properties>
   <dependencies>
 	<!--Jetty  dependencies start here-->
 	<dependency>

@@ -1,15 +1,19 @@
 package com.sg.impl;
 
-import in.sg.salary.bean.Employee;
-import in.sg.salary.bean.Salary;
-import in.sg.salary.connection.MySqlConnection;
-import in.sg.salary.dao.MySqlDAO;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import com.sg.bean.Employee;
+import com.sg.bean.Salary;
+import com.sg.connection.MySqlConnection;
+import com.sg.dao.MySqlDAO;
 
 public class MySqlImpl implements MySqlDAO {
     MySqlConnection connection;
