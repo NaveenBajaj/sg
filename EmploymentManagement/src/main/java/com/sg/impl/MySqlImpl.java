@@ -17,6 +17,10 @@ import com.sg.dao.MySqlDAO;
 
 public class MySqlImpl implements MySqlDAO {
     MySqlConnection connection;
+    
+    public MySqlImpl(){
+    	connection = new MySqlConnection("jdbc:mysql://localhost:3306/sg", "root", "pass");
+    }
 
     @Override
     public boolean create(String tableName, Map<String, String> record) {
@@ -29,6 +33,7 @@ public class MySqlImpl implements MySqlDAO {
             return st.execute(query);
 
         } catch (Exception e) {
+        	e.printStackTrace();
             System.out.println(e.getMessage());
         }
         return false;
@@ -45,6 +50,7 @@ public class MySqlImpl implements MySqlDAO {
                 return resultSetToBean(tableName, result);
             }
         } catch (Exception ex) {
+        	ex.printStackTrace();
             System.out.println(ex.getMessage());
         }
         return null;
@@ -54,8 +60,8 @@ public class MySqlImpl implements MySqlDAO {
         if (tableName.equalsIgnoreCase("Employee")) {
             Employee employee = new Employee();
             employee.setEmployeeId(result.getString("employeeId"));
-            employee.setFirstName(result.getString("fName"));
-            employee.setLastName(result.getString("lName"));
+            employee.setFirstName(result.getString("firstName"));
+            employee.setLastName(result.getString("lastName"));
             employee.setAadharId(result.getString("aadharId"));
             employee.setMobileNo(result.getString("mobileNo"));
             employee.setPf(result.getString("pf"));
@@ -101,12 +107,14 @@ public class MySqlImpl implements MySqlDAO {
     @Override
     public boolean update(String tableName, Map<String, String> record, String key) {
         try {
+        	String keyValue = record.get(key);
+        	record.remove(key);
             String updateQuery =
                     "UPDATE " + tableName + " SET " +
                             record.entrySet().stream()
                                     .map(x -> x.getKey() + " = " + x.getValue())
-                                    .collect(Collectors.joining("; ")) +
-                            " WHERE " + key + " = " + record.get(key);
+                                    .collect(Collectors.joining(", ")) +
+                            " WHERE " + key + " = " + keyValue;
             Connection conn = connection.getConnection();
             Statement statement = conn.createStatement();
             return statement.execute(updateQuery);

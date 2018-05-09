@@ -11,6 +11,14 @@
 		<jdk.version>1.8</jdk.version>
 	</properties>
   <dependencies>
+  <!-- https://mvnrepository.com/artifact/junit/junit -->
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+    <scope>test</scope>
+</dependency>
+  
 	<!--Jetty  dependencies start here-->
 	<dependency>
 		<groupId>org.eclipse.jetty</groupId>
@@ -59,11 +67,39 @@
     <artifactId>jackson-jaxrs-json-provider</artifactId>
     <version>2.8.4</version>
 </dependency>
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>5.1.46</version>
+</dependency>
 		
 	
   </dependencies>
   
   <build>
     <finalName>EmploymentManagement</finalName>
+    <plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+					<wtpversion>2.0</wtpversion>
+				</configuration>
+			</plugin>
+			</plugins>
   </build>
 </project>

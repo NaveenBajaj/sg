@@ -10,7 +10,7 @@ public class MySqlConnection {
     private String jdbcPassword;
     private Connection jdbcConnection;
 
-    private MySqlConnection(){
+    public MySqlConnection(String jdbcURL, String jdbcUsername, String jdbcPassword){
         this.jdbcURL = jdbcURL;
         this.jdbcUsername = jdbcUsername;
         this.jdbcPassword = jdbcPassword;

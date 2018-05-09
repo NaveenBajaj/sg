@@ -20,15 +20,27 @@
 						</label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control" placeholder="Enter code"
-								name="name" ng-model="addEmployee.empCode">
+								name="name" ng-model="addEmployee.employeeId">
 						</div>
 					</div>
 					<div class="form-group" style="margin-top: 10px;">
 						<label class="control-label col-sm-3" for="modelType">Name:
 						</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" placeholder="Enter first name"
+								name="name" ng-model="addEmployee.firstName">
+						</div>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" placeholder="Enter last name"
+							name="name" ng-model="addEmployee.lastName">
+						</div>
+					</div>
+					<div class="form-group" style="margin-top: 10px;">
+						<label class="control-label col-sm-3" for="modelType">Father name:
+						</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" placeholder="Enter name"
-								name="name" ng-model="addEmployee.empName">
+							<input type="text" class="form-control" placeholder="Enter father name"
+								name="name" ng-model="addEmployee.fatherName">
 						</div>
 					</div>
 					<div class="form-group" style="margin-top: 10px;">
@@ -40,12 +52,12 @@
 						</div>
 					</div>
 					<div class="form-group" style="margin-top: 10px;">
-						<label class="control-label col-sm-3" for="modelType">Adhar
+						<label class="control-label col-sm-3" for="modelType">Aadhar
 							id: </label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control"
 								placeholder="Enter adhar id" name="name"
-								ng-model="addEmployee.adharId">
+								ng-model="addEmployee.aadharId">
 						</div>
 					</div>
 					<div class="form-group" style="margin-top: 10px;">
@@ -62,7 +74,7 @@
 						<div class="col-sm-6">
 							<input type="text" class="form-control"
 								placeholder="Enter mobile number" name="name"
-								ng-model="addEmployee.mobileNumber">
+								ng-model="addEmployee.mobileNo">
 						</div>
 					</div>
 	
@@ -80,7 +92,7 @@
 						</label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control" placeholder="Enter pf number"
-								name="name" ng-model="addEmployee.pfNumber">
+								name="name" ng-model="addEmployee.pf">
 						</div>
 					</div>
 				</div>
@@ -90,7 +102,7 @@
 						</label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control" placeholder="Enter ESIC number"
-								name="name" ng-model="addEmployee.esicNumber">
+								name="name" ng-model="addEmployee.esic">
 						</div>
 					</div>
 				</div>

@@ -1,5 +1,8 @@
 package com.sg.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Employee {
     public String employeeId;
     public String firstName;
@@ -9,8 +12,26 @@ public class Employee {
     public String pf;
     public String esic;
     public String fatherName;
+    public String position;
+    public String address;
 
-    public String getEmployeeId() {
+    public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getEmployeeId() {
         return employeeId;
     }
 
