@@ -21,14 +21,15 @@ public class MySqlImpl implements MySqlDAO {
     public MySqlImpl(){
     	connection = new MySqlConnection("jdbc:mysql://localhost:3306/sg", "root", "pass");
     }
-
+    
     @Override
     public boolean create(String tableName, Map<String, String> record) {
         try {
             Connection conn = connection.getConnection();
             String query = "INSERT INTO " + tableName + "("
                     + String.join(",", record.keySet())
-                    + ") values (" + String.join(",", record.values()) + ")";
+                    + ") values ('" + String.join("','", record.values()) + "')";
+            System.out.println(query);
             Statement st = conn.createStatement();
             return st.execute(query);
 

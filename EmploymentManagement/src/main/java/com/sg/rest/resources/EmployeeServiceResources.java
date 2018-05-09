@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sg.bean.Employee;
@@ -31,9 +32,10 @@ public class EmployeeServiceResources {
 	
 	@GET
 	@Path("/{emp-id}")
-	public Response getEmployee(@PathParam("emp-id") final String empId){
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getEmployee(@PathParam("emp-id") final String empId) throws JsonProcessingException{
 		Employee employee = employeeService.getEmployee(empId);
-		return Response.ok().entity(employee).build();
+		return Response.ok().entity(oMapper.writeValueAsString(employee)).build();
 	}
 	
 	@POST
