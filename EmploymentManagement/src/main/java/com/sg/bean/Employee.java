@@ -15,6 +15,9 @@ public class Employee {
     public String position;
     public String address;
     public String salaryBasis;
+    public String isPf;
+    public String isEsic;
+
     public String getSalaryBasis() {
 		return salaryBasis;
 	}
@@ -23,27 +26,23 @@ public class Employee {
 		this.salaryBasis = salaryBasis;
 	}
 
-	public boolean isPf() {
+    public String getIsPf() {
 		return isPf;
 	}
 
-	public void setPf(boolean isPf) {
+	public void setIsPf(String isPf) {
 		this.isPf = isPf;
 	}
 
-	public boolean isEsic() {
+	public String getIsEsic() {
 		return isEsic;
 	}
 
-	public void setEsic(boolean isEsic) {
+	public void setIsEsic(String isEsic) {
 		this.isEsic = isEsic;
 	}
 
-	public boolean isPf;
-    public boolean isEsic;
-
-
-    public String getPosition() {
+	public String getPosition() {
 		return position;
 	}
 

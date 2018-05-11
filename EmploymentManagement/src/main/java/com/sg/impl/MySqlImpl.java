@@ -68,6 +68,11 @@ public class MySqlImpl implements MySqlDAO {
             employee.setPf(result.getString("pf"));
             employee.setEsic(result.getString("esic"));
             employee.setFatherName(result.getString("fatherName"));
+            employee.setIsPf(result.getString("isPf"));
+            employee.setIsEsic(result.getString("isEsic"));
+            employee.setPosition(result.getString("position"));
+            employee.setAddress(result.getString("address"));
+            employee.setSalaryBasis(result.getString("salaryBasis"));
             return employee;
         } else {
             Salary salary = new Salary();
