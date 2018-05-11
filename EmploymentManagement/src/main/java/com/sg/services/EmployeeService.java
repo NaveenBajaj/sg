@@ -1,5 +1,6 @@
 package com.sg.services;
 
+import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,6 +31,10 @@ public class EmployeeService {
 	
 	public boolean updateEmployee(Employee employee){
 		return mySqlDAO.update(EMPLOYEE_TABLE_NAME, (Map<String, String>) oMapper.convertValue(employee, Map.class), "employeeId");
+	}
+
+	public List<Object> getAllEmployee() {
+		return mySqlDAO.getAll(EMPLOYEE_TABLE_NAME);
 	}
 
 }

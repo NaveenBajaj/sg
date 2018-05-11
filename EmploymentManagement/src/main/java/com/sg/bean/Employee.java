@@ -14,6 +14,34 @@ public class Employee {
     public String fatherName;
     public String position;
     public String address;
+    public String salaryBasis;
+    public String getSalaryBasis() {
+		return salaryBasis;
+	}
+
+	public void setSalaryBasis(String salaryBasis) {
+		this.salaryBasis = salaryBasis;
+	}
+
+	public boolean isPf() {
+		return isPf;
+	}
+
+	public void setPf(boolean isPf) {
+		this.isPf = isPf;
+	}
+
+	public boolean isEsic() {
+		return isEsic;
+	}
+
+	public void setEsic(boolean isEsic) {
+		this.isEsic = isEsic;
+	}
+
+	public boolean isPf;
+    public boolean isEsic;
+
 
     public String getPosition() {
 		return position;

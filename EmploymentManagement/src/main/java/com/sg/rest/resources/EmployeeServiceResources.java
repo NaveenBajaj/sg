@@ -1,6 +1,7 @@
 package com.sg.rest.resources;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -28,6 +29,13 @@ public class EmployeeServiceResources {
 	public EmployeeServiceResources(){
 		employeeService = new EmployeeService();
 		oMapper = new ObjectMapper();
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllEmployee() throws JsonProcessingException{
+		List<Object> employeeList = employeeService.getAllEmployee();
+		return Response.ok().entity(oMapper.writeValueAsString(employeeList)).build();
 	}
 	
 	@GET

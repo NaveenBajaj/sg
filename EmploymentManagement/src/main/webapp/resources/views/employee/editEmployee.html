@@ -13,22 +13,34 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">General information</div>
   		<div class="panel-body">
-	  		<form class="form-horizontal" role="form">
+	  			  		<form class="form-horizontal" role="form">
 				<div>
 					<div class="form-group" style="margin-top: 10px;">
 						<label class="control-label col-sm-3" for="modelType">Code:
 						</label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control" placeholder="Enter code"
-								name="name" ng-model="editEmployee.empCode">
+								name="name" ng-model="editEmployee.employeeId">
 						</div>
 					</div>
 					<div class="form-group" style="margin-top: 10px;">
 						<label class="control-label col-sm-3" for="modelType">Name:
 						</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" placeholder="Enter first name"
+								name="name" ng-model="editEmployee.firstName">
+						</div>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" placeholder="Enter last name"
+							name="name" ng-model="editEmployee.lastName">
+						</div>
+					</div>
+					<div class="form-group" style="margin-top: 10px;">
+						<label class="control-label col-sm-3" for="modelType">Father name:
+						</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" placeholder="Enter name"
-								name="name" ng-model="editEmployee.empName">
+							<input type="text" class="form-control" placeholder="Enter father name"
+								name="name" ng-model="editEmployee.fatherName">
 						</div>
 					</div>
 					<div class="form-group" style="margin-top: 10px;">
@@ -40,12 +52,12 @@
 						</div>
 					</div>
 					<div class="form-group" style="margin-top: 10px;">
-						<label class="control-label col-sm-3" for="modelType">Adhar
+						<label class="control-label col-sm-3" for="modelType">Aadhar
 							id: </label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control"
 								placeholder="Enter adhar id" name="name"
-								ng-model="editEmployee.adharId">
+								ng-model="editEmployee.aadharId">
 						</div>
 					</div>
 					<div class="form-group" style="margin-top: 10px;">
@@ -62,7 +74,7 @@
 						<div class="col-sm-6">
 							<input type="text" class="form-control"
 								placeholder="Enter mobile number" name="name"
-								ng-model="editEmployee.mobileNumber">
+								ng-model="editEmployee.mobileNo">
 						</div>
 					</div>
 	
@@ -80,7 +92,7 @@
 						</label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control" placeholder="Enter code"
-								name="name" ng-model="editEmployee.pfNumber">
+								name="name" ng-model="editEmployee.pf">
 						</div>
 					</div>
 				</div>
@@ -90,7 +102,7 @@
 						</label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control" placeholder="Enter code"
-								name="name" ng-model="editEmployee.esicNumber">
+								name="name" ng-model="editEmployee.esic">
 						</div>
 					</div>
 				</div>

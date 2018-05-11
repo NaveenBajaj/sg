@@ -10,22 +10,24 @@
 		</div>
 	</div>
 	<div class="datasourceTable">
-		<table st-table="rowCollectionsEmployee" st-safe-src="allEmployee"  
+		<table st-table="allEmployees"  
 			class="table table-striped">
 			<thead style="background-color: lightskyblue;">
 				<tr>
-					<th>Emp code</th>
-					<th>Name</th>
-					<th>Position</th>
+					<th>EmployeeId</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th></th>
 				</tr>
 				
 			</thead>
 			<tbody>
 
-				<tr ng-repeat="row in allEmployee">
-					<td><a href="" ng-click="editEmployeeDetails(row)">{{row.empCode}}</a></td>
-					<td>{{row.empName}}</td>
-					<td>{{row.position}}</td>
+				<tr ng-repeat="row in allEmployees">
+					<td><a href="" ng-click="editEmployeeDetails(row.employeeId)">{{row.employeeId}}</a></td>
+					<td>{{row.firstName}}</td>
+					<td>{{row.lastName}}</td>
+					<td><a href="" ng-click="calculateSalary(row.employeeId)">Calculate Salary</a></td>
 				</tr>
 			</tbody>
 		 <tfoot>

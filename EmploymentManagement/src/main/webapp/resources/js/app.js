@@ -91,6 +91,23 @@ angular.module('sgApp', ['ui.router', 'oc.lazyLoad', 'ngCookies', 'ui-notificati
             }
         }
     });
+    
+    path.state('app.salary', {
+        url: '/salary/:employeeId',
+        controller: 'SalaryCtrl',
+        templateUrl: 'views/employee/salary.html',
+        resolve: {
+            loadMyFiles: function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'tandemApp',
+                    files: [
+                        'js/directives/header.js',
+                        'js/controllers/salaryController.js',
+                    ]
+                })
+            }
+        }
+    });
 
    
 }]).factory([
@@ -100,7 +117,7 @@ angular.module('sgApp', ['ui.router', 'oc.lazyLoad', 'ngCookies', 'ui-notificati
 ]).run(['$location', '$rootScope', '$state',
     function($location, $rootScope, $state) {
         if (!$rootScope.hasOwnProperty("authenticated") || !$rootScope.authenticated) {
-            $state.go('app.admin');
+            $state.go('app.employee');
         }
     }
 ]).run(['$cookieStore', function($cookieStore) {
