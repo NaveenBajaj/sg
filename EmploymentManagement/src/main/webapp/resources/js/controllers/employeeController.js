@@ -1,7 +1,8 @@
 'use strict';
 angular.module('sgApp')
     .controller('EmployeeCtrl', function($scope, $http, $state, $cookieStore, $rootScope, $location, Notification, $window) {
-    	$scope.addEmployee = {}
+    	$scope.addEmployee = {};
+    	$scope.addEmployeeSalary = {};
     	$scope.addEmployee.salaryBasis = "package";
     	$scope.addEmployee.isPf = true;
     	$scope.addEmployee.isEsic = true;
@@ -13,8 +14,13 @@ angular.module('sgApp')
 	    	});
     	
     	$scope.saveEmployee = function(){
+    		$scope.addEmployeeSalary.employeeId = $scope.addEmployee.employeeId;
+    		$scope.addEmployeeSalary.month = moment().format('M');
+    		$scope.addEmployeeSalary.year = moment().format('Y');
     		console.log($scope.addEmployee);
-    		$http.post('/api/employee/', $scope.addEmployee, {
+    		console.log($scope.addEmployeeSalary)
+    		var obj = {"employee": $scope.addEmployee, "salary":$scope.addEmployeeSalary}
+    		$http.post('/api/employee/', obj, {
     			headers : {
     				"content-type" : "application/json"
     			}
@@ -32,6 +38,15 @@ angular.module('sgApp')
 	    	.success(function(response) {
 	    		console.log(response);
 	    		$scope.editEmployee = response;
+	    		$scope.editEmployee.isPf = ($scope.editEmployee.isPf == 'true');
+	    		$scope.editEmployee.isEsic = ($scope.editEmployee.isEsic == 'true');
+	    	});
+    		var month = moment().format('M');
+    		var year = moment().format('Y');
+    		$http.get('/api/employee/'+$cookieStore.get("editEmployeeId")+'/salary/'+month+'/'+year)
+	    	.success(function(response) {
+	    		console.log(response);
+	    		$scope.editEmployeeSalary = response;
 	    	});
     	
     	}

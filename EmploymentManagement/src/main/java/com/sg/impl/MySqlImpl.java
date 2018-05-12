@@ -39,7 +39,28 @@ public class MySqlImpl implements MySqlDAO {
         }
         return false;
     }
-
+    @Override
+    public Object getRecord(String tableName, Map<String, String> keys) {
+        String query = "SELECT * FROM " + tableName + " where "; 
+        for(Map.Entry<String, String> entry : keys.entrySet()) {
+        	query = query + entry.getKey() + " = " + entry.getValue();
+        	query = query + " AND ";
+        }
+        query = query.substring(0, query.length() - 5);
+        System.out.println("getRecord query: " + query);
+        try {
+            Connection conn = connection.getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(query);
+            while (result.next()) {
+                return resultSetToBean(tableName, result);
+            }
+        } catch (Exception ex) {
+        	ex.printStackTrace();
+            System.out.println(ex.getMessage());
+        }
+        return null;
+    }
     @Override
     public Object getRecord(String tableName, String key, String id) {
         String query = "SELECT * FROM " + tableName + " where " + key + " = " + id + "";
@@ -108,6 +129,34 @@ public class MySqlImpl implements MySqlDAO {
             System.out.println(ex.getMessage());
         }
         return list;
+    }
+    
+    @Override
+    public boolean update(String tableName, Map<String, String> record, Map<String, String> keys) {
+    	for(Map.Entry<String, String> entry : keys.entrySet()) {
+    		record.remove(entry.getKey());
+    	}
+        try {
+            String updateQuery =
+                    "UPDATE " + tableName + " SET " +
+                            record.entrySet().stream()
+                                    .map(x -> x.getKey() + " = " + x.getValue())
+                                    .collect(Collectors.joining(", ")) +
+                            " WHERE ";// + key + " = " + keyValue;
+            for(Map.Entry<String, String> entry : keys.entrySet()) {
+            	updateQuery = updateQuery + entry.getKey() + " = " + entry.getValue();
+            	updateQuery = updateQuery + " AND ";
+            }
+            updateQuery = updateQuery.substring(0, updateQuery.length() - 5);
+            System.out.println("getRecord query: " + updateQuery);
+            Connection conn = connection.getConnection();
+            Statement statement = conn.createStatement();
+            return statement.execute(updateQuery);
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
+        return false;
     }
 
     @Override

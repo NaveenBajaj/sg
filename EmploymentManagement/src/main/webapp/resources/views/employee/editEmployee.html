@@ -83,31 +83,92 @@
   		</div>
 	</div>
 	<div class="panel panel-default">
-  		<div class="panel-heading">Account information</div>
-  		<div class="panel-body">
-  			<form class="form-horizontal" role="form">
-				<div>
-					<div class="form-group" style="margin-top: 10px;">
-						<label class="control-label col-sm-3" for="modelType">PF number:
-						</label>
-						<div class="col-sm-6">
-							<input type="text" class="form-control" placeholder="Enter code"
-								name="name" ng-model="editEmployee.pf">
-						</div>
+		<div class="panel-heading">Account information</div>
+		<div class="panel-body">
+			<form class="form-horizontal" role="form">
+			<div class="form-group" style="margin-top: 10px;text-align: center;">
+				<label class="radio-inline"> <input type="radio" name="salary-basis" ng-model="editEmployee.salaryBasis" value="package"
+					>Package
+				</label> <label class="radio-inline"> <input type="radio" name="salary-basis" ng-model="editEmployee.salaryBasis" value="daily"
+					>Daily
+				</label> 
+				<div ng-if="editEmployee.salaryBasis == 'package'">
+					<label class="checkbox-inline"> <input type="checkbox" ng-model="editEmployee.isPf" ng-click="pfCheckboxClick()"
+						value="">PF
+					</label> <label class="checkbox-inline"> <input type="checkbox" ng-model="editEmployee.isEsic" ng-click="esicCheckboxClick()"
+						value="">ESIC
+					</label>
+				</div>
+			</div>
+			<div ng-if="editEmployee.salaryBasis == 'package'">
+				<div ng-if="editEmployee.isPf" class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-3" for="modelType">PF
+						number: </label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control"
+							placeholder="Enter pf number" name="name"
+							ng-model="editEmployee.pf">
 					</div>
 				</div>
-				<div>
-					<div class="form-group" style="margin-top: 10px;">
-						<label class="control-label col-sm-3" for="modelType">ESIC number:
-						</label>
-						<div class="col-sm-6">
-							<input type="text" class="form-control" placeholder="Enter code"
-								name="name" ng-model="editEmployee.esic">
-						</div>
+				<div ng-if="editEmployee.isEsic" class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-3" for="modelType">ESIC
+						number: </label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control"
+							placeholder="Enter ESIC number" name="name"
+							ng-model="editEmployee.esic">
 					</div>
+				</div>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-3" for="modelType">Basic
+						Salary: </label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control"
+							placeholder="Enter basic salary" name="name"
+							ng-model="editEmployeeSalary.basicSalary">
+					</div>
+				</div>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-3" for="modelType">HRA:
+						 </label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control"
+							placeholder="Enter hra" name="name"
+							ng-model="editEmployeeSalary.hra">
+					</div>
+				</div>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-3" for="modelType">Convience:
+						 </label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control"
+							placeholder="Enter convience" name="name"
+							ng-model="editEmployeeSalary.convience">
+					</div>
+				</div>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-3" for="modelType">Other Allowance:
+						 </label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control"
+							placeholder="Enter other allowance" name="name"
+							ng-model="editEmployeeSalary.otherAllowance">
+					</div>
+				</div>
+				</div>
+				<div ng-if="editEmployee.salaryBasis == 'daily'">
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-3" for="modelType">Daily Rate:
+						</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control"
+							placeholder="Enter rate per day" name="name"
+							ng-model="editEmployeeSalary.ratePerDay">
+					</div>
+				</div>
 				</div>
 			</form>
-  		</div>
+		</div>
 	</div>
 	
 </div>

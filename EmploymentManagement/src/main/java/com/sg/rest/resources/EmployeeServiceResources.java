@@ -2,6 +2,7 @@ package com.sg.rest.resources;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -17,6 +18,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sg.bean.Employee;
+import com.sg.bean.Salary;
 import com.sg.services.EmployeeService;
 
 @Path("employee")
@@ -46,11 +48,23 @@ public class EmployeeServiceResources {
 		return Response.ok().entity(oMapper.writeValueAsString(employee)).build();
 	}
 	
+	@GET
+	@Path("/{emp-id}/salary/{month}/{year}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getSalary(@PathParam("emp-id") final String empId, @PathParam("month") final String month, @PathParam("year") final String year) throws JsonProcessingException{
+		Salary salary = employeeService.getEmployeeSalary(empId, month, year);
+		return Response.ok().entity(oMapper.writeValueAsString(salary)).build();
+	}
+	
 	@POST
 	@Consumes("application/json")
 	public Response createEmployee(String employeeJsonStr) throws JsonParseException, JsonMappingException, IOException{
-		Employee employee = oMapper.readValue(employeeJsonStr, Employee.class);
+		Map<String, String> map = oMapper.readValue(employeeJsonStr, Map.class);
+		
+		Employee employee = oMapper.convertValue(map.get("employee"), Employee.class);
+		Salary employeeSalary = oMapper.convertValue(map.get("salary"), Salary.class);
 		employeeService.createEmployee(employee);
+		employeeService.createEmployeeSalary(employeeSalary);
 		return Response.ok().build();
 	}
 	

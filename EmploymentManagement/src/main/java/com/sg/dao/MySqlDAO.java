@@ -9,4 +9,6 @@ public interface MySqlDAO {
     List<Object> getAll(String tableName);
     boolean update(String tableName, Map<String, String> map, String key);
     boolean remove(String tableName, String key, String id);
+	Object getRecord(String tableName, Map<String, String> keys);
+	boolean update(String tableName, Map<String, String> record, Map<String, String> keys);
 }
