@@ -12,6 +12,10 @@ public class Salary {
     public String otherAllowance;
     public String ratePerDay;
     public String leaves;
+    public String pfAmount;
+    public String esicAmount;
+    public String grossSalary;
+    public String netPay;
 
     public String getEmployeeId() {
         return employeeId;
@@ -99,5 +103,37 @@ public class Salary {
 
     public void setLeaves(String leaves) {
         this.leaves = leaves;
+    }
+
+    public String getPfAmount() {
+        return pfAmount;
+    }
+
+    public void setPfAmount(String pfAmount) {
+        this.pfAmount = pfAmount;
+    }
+
+    public String getEsicAmount() {
+        return esicAmount;
+    }
+
+    public void setEsicAmount(String esicAmount) {
+        this.esicAmount = esicAmount;
+    }
+
+    public String getGrossSalary() {
+        return grossSalary;
+    }
+
+    public void setGrossSalary(String grossSalary) {
+        this.grossSalary = grossSalary;
+    }
+
+    public String getNetPay() {
+        return netPay;
+    }
+
+    public void setNetPay(String netPay) {
+        this.netPay = netPay;
     }
 }
