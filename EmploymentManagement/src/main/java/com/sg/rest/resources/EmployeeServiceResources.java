@@ -25,22 +25,22 @@ import com.sg.services.EmployeeService;
 @Path("employee")
 @Produces(MediaType.APPLICATION_JSON)
 public class EmployeeServiceResources {
-	
+
 	private final EmployeeService employeeService;
 	ObjectMapper oMapper;
-	
+
 	public EmployeeServiceResources(){
 		employeeService = new EmployeeService();
 		oMapper = new ObjectMapper();
 	}
-	
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllEmployee() throws JsonProcessingException{
 		List<Object> employeeList = employeeService.getAllEmployee();
 		return Response.ok().entity(oMapper.writeValueAsString(employeeList)).build();
 	}
-	
+
 	@GET
 	@Path("/{emp-id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -48,7 +48,7 @@ public class EmployeeServiceResources {
 			Employee employee = employeeService.getEmployee(empId);
 		return Response.ok().entity(oMapper.writeValueAsString(employee)).build();
 	}
-	
+
 	@GET
 	@Path("/{emp-id}/salary/{month}/{year}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -56,48 +56,49 @@ public class EmployeeServiceResources {
 		Salary salary = employeeService.getEmployeeSalary(empId, month, year);
 		return Response.ok().entity(oMapper.writeValueAsString(salary)).build();
 	}
-	
+
 	@POST
 	@Consumes("application/json")
 	public Response createEmployee(String employeeJsonStr) throws JsonParseException, JsonMappingException, IOException{
 		Map<String, String> map = oMapper.readValue(employeeJsonStr, Map.class);
-		
+
 		Employee employee = oMapper.convertValue(map.get("employee"), Employee.class);
 		Salary employeeSalary = oMapper.convertValue(map.get("salary"), Salary.class);
 		employeeService.createEmployee(employee);
 		employeeService.createEmployeeSalary(employeeSalary);
 		return Response.ok().build();
 	}
-	
+
 	@POST
 	@Path("/{emp-id}")
 	@Consumes("application/json")
 	public Response updateEmployee(String employeeJsonStr) throws JsonParseException, JsonMappingException, IOException{
 		Map<String, String> map = oMapper.readValue(employeeJsonStr, Map.class);
-		
+
 		Employee employee = oMapper.convertValue(map.get("employee"), Employee.class);
 		Salary employeeSalary = oMapper.convertValue(map.get("salary"), Salary.class);
 		employeeService.updateEmployee(employee);
 		employeeService.updateEmployeeSalary(employeeSalary);
 		return Response.ok().build();	
 	}
-	
+
 	@POST
 	@Path("/{emp-id}/update-salary")
 	@Consumes("application/json")
 	public Response updateSalary(String salaryJsonStr) throws JsonParseException, JsonMappingException, IOException{
 		Salary employeeSalary = oMapper.readValue(salaryJsonStr, Salary.class);
 		employeeService.updateEmployeeSalary(employeeSalary);
-		return Response.ok().build();	
+		return Response.ok().build();
 	}
-	
-	
+
+
 	@GET
 	@Path("/{emp-id}/calculate-salary/{month}/{year}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response calculateSalary(@PathParam("emp-id") final String empId, @PathParam("month") final String month, @PathParam("year") final String year) throws JsonProcessingException{
 		CalculateSalary cs = new CalculateSalary();
-		Salary salary = cs.getSalary(empId, month, year);
+		final String salaryDate = String.join("-",year,month,"01");
+		Salary salary = cs.getSalary(empId, salaryDate);
 		return Response.ok().entity(oMapper.writeValueAsString(salary)).build();
 	}
 

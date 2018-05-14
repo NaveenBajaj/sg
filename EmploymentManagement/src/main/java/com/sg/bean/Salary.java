@@ -2,8 +2,7 @@ package com.sg.bean;
 
 public class Salary {
     public String employeeId;
-    public String month;
-    public String year;
+    public String salaryDate;
     public String noOfHours="0";
     public String extraHours="0";
     public String basicSalary="0";
@@ -25,20 +24,12 @@ public class Salary {
         this.employeeId = employeeId;
     }
 
-    public String getMonth() {
-        return month;
+    public String getSalaryDate() {
+        return salaryDate;
     }
 
-    public void setMonth(String month) {
-        this.month = month;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
+    public void setSalaryDate(String salaryDate) {
+        this.salaryDate = salaryDate;
     }
 
     public String getNoOfHours() {
