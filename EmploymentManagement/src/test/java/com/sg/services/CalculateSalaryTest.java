@@ -15,7 +15,7 @@ public class CalculateSalaryTest {
     CalculateSalary calculateSalary = spy(new CalculateSalary());
 
     @Mock
-    MySqlDAO mySqlDAO;
+    MySqlImpl mySqlImpl;
 
     Salary salaryObject;
     Employee employee;
@@ -38,9 +38,9 @@ public class CalculateSalaryTest {
 
     @Test
     public void getSalaryTest() {
-        final String empId = "1";
-        when(mySqlDAO.getRecord("salary","employeeId", empId)).thenReturn(salaryObject);
-        when(mySqlDAO.getRecord("employee","employeeId", empId)).thenReturn(employee);
+        final String empId = "101";
+        when(mySqlImpl.getRecord("salary","employeeId", empId)).thenReturn(salaryObject);
+        when(mySqlImpl.getRecord("employee","employeeId", empId)).thenReturn(employee);
         Salary newSalaryObj = calculateSalary.getSalary("1");
         System.out.println(newSalaryObj.getGrossSalary());
 

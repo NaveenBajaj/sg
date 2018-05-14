@@ -1,5 +1,178 @@
 <div>
 	<div class="row">
-	hello
+		<div class="col-lg-12">
+			<h3 class="page-header">Pay slip</h3>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">General information</div>
+		<div class="panel-body">
+			<form class="form-horizontal" role="form">
+				<div>
+					<div class="form-group" style="margin-top: 10px;">
+						<label class="control-label col-sm-3" for="modelType">EmployeeId:
+						</label>
+						<div class="col-sm-3">
+							<label class="control-label" for="modelType">{{editEmployee.employeeId}}
+							</label>
+						</div>
+
+						<label class="control-label col-sm-3" for="modelType">PF
+							No : </label>
+						<div class="col-sm-3">
+							<label class="control-label" for="modelType">{{editEmployee.pf}}
+							</label>
+						</div>
+					</div>
+					<div class="form-group" style="margin-top: 10px;">
+						<label class="control-label col-sm-3" for="modelType">Name:
+						</label>
+						<div class="col-sm-3">
+							<label class="control-label" for="modelType">{{editEmployee.firstName}}
+								{{editEmployee.lastName}} </label>
+						</div>
+
+						<label class="control-label col-sm-3" for="modelType">ESIC
+							No : </label>
+						<div class="col-sm-3">
+							<label class="control-label" for="modelType">{{editEmployee.esic}}
+							</label>
+						</div>
+					</div>
+
+					<div class="form-group" style="margin-top: 10px;">
+						<label class="control-label col-sm-3" for="modelType">Position:
+						</label>
+						<div class="col-sm-3">
+							<label class="control-label" for="modelType">{{editEmployee.position}}
+							</label>
+						</div>
+					</div>
+					<div class="form-group" style="margin-top: 10px;">
+						<label class="control-label col-sm-3" for="modelType">Aadhar
+							Id: </label>
+						<div class="col-sm-3">
+							<label class="control-label" for="modelType">{{editEmployee.aadharId}}
+							</label>
+						</div>
+					</div>
+					<div class="form-group" style="margin-top: 10px;"></div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="panel panel-default col-sm-5" style="padding: 0;margin-right:20px;">
+		<div class="panel-heading">Earnings</div>
+		<div class="panel-body">
+			<form class="form-horizontal" role="form">
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">Basic
+						Salary: </label>
+					<div class="col-sm-6">
+						<label class="control-label" for="modelType">{{editEmployeeSalary.basicSalary}}
+						</label>
+					</div>
+				</div>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">HRA:
+					</label>
+					<div class="col-sm-6">
+						<label class="control-label" for="modelType">{{editEmployeeSalary.hra}}
+						</label>
+					</div>
+				</div>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">Convience:
+					</label>
+					<div class="col-sm-6">
+						<label class="control-label" for="modelType">{{editEmployeeSalary.convience}}
+						</label>
+					</div>
+				</div>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">Other
+						Allowance: </label>
+					<div class="col-sm-6">
+						<label class="control-label" for="modelType">{{editEmployeeSalary.otherAllowance}}
+						</label>
+					</div>
+				</div>
+				<hr>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">Gross
+						Income: </label>
+					<div class="col-sm-6">
+						<label class="control-label" for="modelType">{{editEmployeeSalary.grossSalary}}
+						</label>
+					</div>
+				</div>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">Daily
+						Rate: </label>
+					<div class="col-sm-6">
+						<label class="control-label" for="modelType">{{editEmployeeSalary.ratePerDay}}
+						</label>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="panel panel-default col-sm-5" style="padding: 0;">
+		<div class="panel-heading">Deductions</div>
+		<div class="panel-body">
+			<form class="form-horizontal" role="form">
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">PF :
+					</label>
+					<div class="col-sm-6">
+						<label class="control-label" for="modelType">{{editEmployeeSalary.pfAmount}}
+						</label>
+					</div>
+				</div>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">ESIC:
+					</label>
+					<div class="col-sm-6">
+						<label class="control-label" for="modelType">{{editEmployeeSalary.esicAmount}}
+						</label>
+					</div>
+				</div>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">Leaves:
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="col-sm-3"
+								placeholder="Enter leaves" name="name"
+								ng-model="editEmployeeSalary.leaves" 
+								ng-model-options="{debounce: 1000}" ng-change="updateLeaves()">
+							<label class="control-label" for="modelType">&nbsp;&nbsp;{{leavesDeduction}}
+						</label>	
+					</div>
+				</div>
+				
+				<hr>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">Total
+						Deduction: </label>
+					<div class="col-sm-6">
+						<label class="control-label" for="modelType">{{totalDeduction}}
+						</label>
+					</div>
+				</div>
+				<hr>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">Net
+						Pay: </label>
+					<div class="col-sm-6">
+						<label class="control-label" for="modelType">{{editEmployeeSalary.netPay}}
+						</label>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
 </div>
+
+
+

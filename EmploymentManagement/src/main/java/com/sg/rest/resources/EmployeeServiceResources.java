@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sg.bean.Employee;
 import com.sg.bean.Salary;
+import com.sg.services.CalculateSalary;
 import com.sg.services.EmployeeService;
 
 @Path("employee")
@@ -44,7 +45,7 @@ public class EmployeeServiceResources {
 	@Path("/{emp-id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getEmployee(@PathParam("emp-id") final String empId) throws JsonProcessingException{
-		Employee employee = employeeService.getEmployee(empId);
+			Employee employee = employeeService.getEmployee(empId);
 		return Response.ok().entity(oMapper.writeValueAsString(employee)).build();
 	}
 	
@@ -71,9 +72,33 @@ public class EmployeeServiceResources {
 	@POST
 	@Path("/{emp-id}")
 	@Consumes("application/json")
-	public Response updateEmployee(Employee employee){
+	public Response updateEmployee(String employeeJsonStr) throws JsonParseException, JsonMappingException, IOException{
+		Map<String, String> map = oMapper.readValue(employeeJsonStr, Map.class);
+		
+		Employee employee = oMapper.convertValue(map.get("employee"), Employee.class);
+		Salary employeeSalary = oMapper.convertValue(map.get("salary"), Salary.class);
 		employeeService.updateEmployee(employee);
-		return Response.ok().build();
+		employeeService.updateEmployeeSalary(employeeSalary);
+		return Response.ok().build();	
+	}
+	
+	@POST
+	@Path("/{emp-id}/update-salary")
+	@Consumes("application/json")
+	public Response updateSalary(String salaryJsonStr) throws JsonParseException, JsonMappingException, IOException{
+		Salary employeeSalary = oMapper.readValue(salaryJsonStr, Salary.class);
+		employeeService.updateEmployeeSalary(employeeSalary);
+		return Response.ok().build();	
+	}
+	
+	
+	@GET
+	@Path("/{emp-id}/calculate-salary/{month}/{year}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response calculateSalary(@PathParam("emp-id") final String empId, @PathParam("month") final String month, @PathParam("year") final String year) throws JsonProcessingException{
+		CalculateSalary cs = new CalculateSalary();
+		Salary salary = cs.getSalary(empId, month, year);
+		return Response.ok().entity(oMapper.writeValueAsString(salary)).build();
 	}
 
 }

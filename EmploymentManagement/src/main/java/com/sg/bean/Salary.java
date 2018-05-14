@@ -4,18 +4,18 @@ public class Salary {
     public String employeeId;
     public String month;
     public String year;
-    public String noOfHours;
-    public String extraHours;
-    public String basicSalary;
-    public String hra;
-    public String convience;
-    public String otherAllowance;
-    public String ratePerDay;
-    public String leaves;
-    public String pfAmount;
-    public String esicAmount;
-    public String grossSalary;
-    public String netPay;
+    public String noOfHours="0";
+    public String extraHours="0";
+    public String basicSalary="0";
+    public String hra="0";
+    public String convience="0";
+    public String otherAllowance="0";
+    public String ratePerDay="0";
+    public String leaves="0";
+    public String pfAmount="0";
+    public String esicAmount="0";
+    public String grossSalary="0";
+    public String netPay="0";
 
     public String getEmployeeId() {
         return employeeId;

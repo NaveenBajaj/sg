@@ -43,6 +43,13 @@ public class EmployeeService {
 	public boolean createEmployeeSalary(Salary salary){
 		return mySqlDAO.create(SALARY_TABLE_NAME, (Map<String, String>) oMapper.convertValue(salary, Map.class));
 	}
+	public boolean updateEmployeeSalary(Salary salary){
+		Map<String, String> map = new HashMap<>();
+		map.put("employeeId", salary.getEmployeeId());
+		map.put("month", salary.getMonth());
+		map.put("year", salary.getYear());
+		return mySqlDAO.update(SALARY_TABLE_NAME, (Map<String, String>) oMapper.convertValue(salary, Map.class), map);
+	}
 	
 	public Salary getEmployeeSalary(String empId, String month, String year){
 		Map<String, String> map = new HashMap<>();

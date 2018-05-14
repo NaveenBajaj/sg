@@ -14,10 +14,21 @@ address varchar(100),
 salaryBasis varchar(10)
 );
 
+create table employee_account (
+employeeId varchar(10),
+effectiveDate date,
+basicSalary varchar(10),
+hra varchar(10),
+convience varchar(10),
+otherAllowance varchar(10),
+ratePerDay varchar(10),
+PRIMARY KEY (employeeId,month,year),
+FOREIGN KEY (employeeId) REFERENCES employee(employeeId)
+);
+
 create table salary (
 employeeId varchar(10),
-month varchar(10),
-year varchar(4),
+salaryDate date,
 noOfHours varchar(10),
 extraHours varchar(10),
 basicSalary varchar(10),
@@ -26,6 +37,10 @@ convience varchar(10),
 otherAllowance varchar(10),
 ratePerDay varchar(10),
 leaves varchar(10),
+pfAmount varchar(10),
+esicAmount varchar(10),
+grossSalary varchar(10),
+netPay varchar(10),
 PRIMARY KEY (employeeId,month,year),
 FOREIGN KEY (employeeId) REFERENCES employee(employeeId)
 );

@@ -4,19 +4,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Employee {
-    public String employeeId;
-    public String firstName;
-    public String lastName;
-    public String aadharId;
-    public String mobileNo;
-    public String pf;
-    public String esic;
-    public String fatherName;
-    public String position;
-    public String address;
-    public String salaryBasis;
-    public String isPf;
-    public String isEsic;
+    private String employeeId;
+    private String firstName;
+    private String lastName;
+    private String aadharId;
+    private String mobileNo;
+    private String pf;
+    private String esic;
+    private String fatherName;
+    private String position;
+    private String address;
+    private String salaryBasis;
+    private String isPf;
+    private String isEsic;
 
     public String getSalaryBasis() {
 		return salaryBasis;
