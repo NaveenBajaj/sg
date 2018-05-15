@@ -3,6 +3,7 @@ package com.sg.services;
 public class Constants {
     public static final String SALARY_TABLE_NAME = "salary";
     public static final String EMPLOYEE_TABLE_NAME = "employee";
+    public static final String EMPLOYEE_ACCOUNT_TABLE_NAME = "employee_account";
 
     public static final int MAXIMUM_PF_AMOUNT= 10000;
     public static final int MAXIMUM_ESIC_AMOUNT = 21000;

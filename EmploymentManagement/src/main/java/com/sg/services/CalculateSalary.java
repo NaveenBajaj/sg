@@ -21,25 +21,30 @@ public class CalculateSalary {
         Map<String, String> map = new HashMap<>();
         map.put("employeeId", empId);
         map.put("salaryDate", salaryDate);
+        
+        Map<String, String> empAccMap = new HashMap<>();
+        empAccMap.put("employeeId", empId);
+        empAccMap.put("effectiveDate", salaryDate);
 
-        final Salary salaryObject = (Salary) mySqlDAO.getRecord(Constants.SALARY_TABLE_NAME, map);
+        final Salary salObject = (Salary) mySqlDAO.getRecord(Constants.SALARY_TABLE_NAME, map);
         final Employee employee = (Employee) mySqlDAO.getRecord(Constants.EMPLOYEE_TABLE_NAME, "employeeId", empId);
-        final EmployeeAccount employeeAccount = (EmployeeAccount) mySqlDAO.getRecord(Constants.EMPLOYEE_TABLE_NAME, "employeeId", empId);
+        final EmployeeAccount employeeAccount = (EmployeeAccount) mySqlDAO.getRecord(Constants.EMPLOYEE_ACCOUNT_TABLE_NAME, empAccMap);
         //select * from employee_account where employeeId="" and effectiveDate<="2019-04-31" order by effectiveDate desc limit 1;
 
-        System.out.println(salaryObject);
+        System.out.println(salObject);
 
         // To-Do: rateperday or fixed?
 //        final int ratePerDayFixed = Integer.parseInt(employeeAccount.getRatePerDay());
-        final int noOfLeaves = Integer.parseInt(salaryObject.getLeaves());
+        
 //        final float multipleFactor = (NO_OF_DAYS_IN_A_MONTH - noOfLeaves)/NO_OF_DAYS_IN_A_MONTH;
-        final Salary updatedSalaryObject = updateSalaryObject(salaryObject, employeeAccount);
+        final Salary salaryObject = updateSalaryObject(salObject, employeeAccount);
+        final int noOfLeaves = Integer.parseInt(salaryObject.getLeaves());
 //        final int totalSalary = getSalarySum(salaryObject);
         final float ratePerDay = getRatePerDay(totalSalary);
 //        final int leavesMoney = getLeavesMoney(salaryObject, ratePerDay);
         final float extraIncome = getExtraHourIncome(salaryObject, ratePerDay);
         final float grossIncome = totalSalary + extraIncome;
-        final int basicSalary = Integer.parseInt(salaryObject.getBasicSalary());
+        final float basicSalary = Float.parseFloat(salaryObject.getBasicSalary());
         final double pfAmount = Math.round(getPf(employee, grossIncome, basicSalary) * 100.0) / 100.0;
         final double esicAmount = Math.round(getEsic(employee, grossIncome, basicSalary) * 100.0) / 100.0;
         final double netPay = grossIncome - pfAmount - esicAmount;
@@ -54,7 +59,7 @@ public class CalculateSalary {
         // Convert POJO to Map
         ObjectMapper mapper = new ObjectMapper();
         Map<String, String> salaryMap =
-                mapper.convertValue(Salary.class, new TypeReference<Map<String, String>>() {
+                mapper.convertValue(salaryObject, new TypeReference<Map<String, String>>() {
                 });
         mySqlDAO.update(Constants.SALARY_TABLE_NAME, salaryMap, map);
 
@@ -68,7 +73,10 @@ public class CalculateSalary {
                 + Integer.parseInt(salaryObject.getOtherAllowance());
     }
 
-    private final Salary updateSalaryObject(final Salary salaryObject, final EmployeeAccount employeeAccount) {
+    private final Salary updateSalaryObject( Salary salaryObject, final EmployeeAccount employeeAccount) {
+    	if(salaryObject==null){
+    		salaryObject = new Salary();
+    	}
         final int noOfLeaves = Integer.parseInt(salaryObject.getLeaves());
         final float multipleFactor = (NO_OF_DAYS_IN_A_MONTH - noOfLeaves) / NO_OF_DAYS_IN_A_MONTH;
         final float basicSalary = Float.parseFloat(employeeAccount.getBasicSalary()) * multipleFactor;
@@ -104,14 +112,14 @@ public class CalculateSalary {
         return noOfExtraDays * ratePerDay;
     }
 
-    private final double getPf(final Employee employee, final float grossIncome, final int basicSalary) {
+    private final double getPf(final Employee employee, final float grossIncome, final float basicSalary) {
         if (employee.getIsPf().equalsIgnoreCase("true") && basicSalary < Constants.MAXIMUM_PF_AMOUNT) {
             return basicSalary * Constants.PF_PERCENT;
         }
         return 0;
     }
 
-    private final double getEsic(final Employee employee, final float grossIncome, final int basicSalary) {
+    private final double getEsic(final Employee employee, final float grossIncome, final float basicSalary) {
         if (employee.getIsEsic().equalsIgnoreCase("true") && grossIncome < Constants.MAXIMUM_ESIC_AMOUNT) {
             return basicSalary * Constants.ESIC_PERCENT;
         }

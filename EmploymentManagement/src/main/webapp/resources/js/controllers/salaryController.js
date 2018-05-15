@@ -7,10 +7,10 @@ angular.module('sgApp')
     	.success(function(response) {
     		$scope.editEmployee = response;
     	});
-    	var month = moment().format('M');
+    	var month = moment().format('MM');
 		var year = moment().format('Y');
 
-    	$http.get('/api/employee/'+$scope.employeeId+'/calculate-salary/'+month+'/'+'year')
+    	$http.get('/api/employee/'+$scope.employeeId+'/calculate-salary/'+month+'/'+year)
     	.success(function(response) {
     		console.log(response);
     		$scope.editEmployeeSalary = response;
@@ -20,9 +20,8 @@ angular.module('sgApp')
     	
     	
     	$scope.updateLeaves = function(){
+    		console.log($scope.editEmployeeSalary)
     		$scope.editEmployeeSalary.employeeId = $scope.editEmployee.employeeId;
-    		$scope.editEmployeeSalary.month = moment().format('M');
-    		$scope.editEmployeeSalary.year = moment().format('Y');
     		$http.post('/api/employee/'+$scope.employeeId+'/update-salary', $scope.editEmployeeSalary, {
     			headers : {
     				"content-type" : "application/json"

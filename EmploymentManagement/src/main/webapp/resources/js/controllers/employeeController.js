@@ -2,7 +2,7 @@
 angular.module('sgApp')
     .controller('EmployeeCtrl', function($scope, $http, $state, $cookieStore, $rootScope, $location, Notification, $window) {
     	$scope.addEmployee = {};
-    	$scope.addEmployeeSalary = {};
+    	$scope.addEmployeeAccount = {};
     	$scope.addEmployee.salaryBasis = "package";
     	$scope.addEmployee.isPf = true;
     	$scope.addEmployee.isEsic = true;
@@ -14,10 +14,9 @@ angular.module('sgApp')
 	    	});
     	
     	$scope.saveEmployee = function(){
-    		$scope.addEmployeeSalary.employeeId = $scope.addEmployee.employeeId;
-    		$scope.addEmployeeSalary.month = moment().format('M');
-    		$scope.addEmployeeSalary.year = moment().format('Y');
-    		var obj = {"employee": $scope.addEmployee, "salary":$scope.addEmployeeSalary}
+    		$scope.addEmployeeAccount.employeeId = $scope.addEmployee.employeeId;
+    		$scope.addEmployeeAccount.effectiveDate = moment().startOf('month').format('YYYY-MM-DD');
+    		var obj = {"employee": $scope.addEmployee, "employee_account":$scope.addEmployeeAccount}
     		$http.post('/api/employee/', obj, {
     			headers : {
     				"content-type" : "application/json"
@@ -33,10 +32,9 @@ angular.module('sgApp')
     	}
     	
     	$scope.updateEmployee = function(){
-    		$scope.editEmployeeSalary.employeeId = $scope.editEmployee.employeeId;
-    		$scope.editEmployeeSalary.month = moment().format('M');
-    		$scope.editEmployeeSalary.year = moment().format('Y');
-    		var obj = {"employee": $scope.editEmployee, "salary":$scope.editEmployeeSalary}
+    		$scope.editEmployeeAccount.employeeId = $scope.editEmployee.employeeId;
+    		$scope.editEmployeeAccount.effectiveDate = moment().startOf('month').format('YYYY-MM-DD');
+    		var obj = {"employee": $scope.editEmployee, "employee_account":$scope.editEmployeeAccount}
     		$http.post('/api/employee/'+$scope.editEmployee.employeeId, obj, {
     			headers : {
     				"content-type" : "application/json"
@@ -50,7 +48,7 @@ angular.module('sgApp')
     			console.log(data);
     		})
     	}
-    	if(angular.isDefined($cookieStore.get("editEmployeeId"))){
+    	if($state.current.name == 'app.editEmployee' && angular.isDefined($cookieStore.get("editEmployeeId"))){
     		$http.get('/api/employee/'+$cookieStore.get("editEmployeeId"))
 	    	.success(function(response) {
 	    		console.log(response);
@@ -58,12 +56,12 @@ angular.module('sgApp')
 	    		$scope.editEmployee.isPf = ($scope.editEmployee.isPf == 'true');
 	    		$scope.editEmployee.isEsic = ($scope.editEmployee.isEsic == 'true');
 	    	});
-    		var month = moment().format('M');
+    		var month = moment().format('MM');
     		var year = moment().format('Y');
     		$http.get('/api/employee/'+$cookieStore.get("editEmployeeId")+'/salary/'+month+'/'+year)
 	    	.success(function(response) {
 	    		console.log(response);
-	    		$scope.editEmployeeSalary = response;
+	    		$scope.editEmployeeAccount = response;
 	    	});
     	
     	}

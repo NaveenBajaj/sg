@@ -22,7 +22,7 @@ hra varchar(10),
 convience varchar(10),
 otherAllowance varchar(10),
 ratePerDay varchar(10),
-PRIMARY KEY (employeeId,month,year),
+PRIMARY KEY (employeeId,effectiveDate),
 FOREIGN KEY (employeeId) REFERENCES employee(employeeId)
 );
 
@@ -41,6 +41,6 @@ pfAmount varchar(10),
 esicAmount varchar(10),
 grossSalary varchar(10),
 netPay varchar(10),
-PRIMARY KEY (employeeId,month,year),
+PRIMARY KEY (employeeId,salaryDate),
 FOREIGN KEY (employeeId) REFERENCES employee(employeeId)
 );

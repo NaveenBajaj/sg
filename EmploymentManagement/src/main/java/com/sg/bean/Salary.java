@@ -1,20 +1,20 @@
 package com.sg.bean;
 
 public class Salary {
-    public String employeeId;
-    public String salaryDate;
-    public String noOfHours="0";
-    public String extraHours="0";
-    public String basicSalary="0";
-    public String hra="0";
-    public String convience="0";
-    public String otherAllowance="0";
-    public String ratePerDay="0";
-    public String leaves="0";
-    public String pfAmount="0";
-    public String esicAmount="0";
-    public String grossSalary="0";
-    public String netPay="0";
+    private String employeeId;
+    private String salaryDate;
+    private String noOfHours="0";
+    private String extraHours="0";
+    private String basicSalary="0";
+    private String hra="0";
+    private String convience="0";
+    private String otherAllowance="0";
+    private String ratePerDay="0";
+    private String leaves="0";
+    private String pfAmount="0";
+    private String esicAmount="0";
+    private String grossSalary="0";
+    private String netPay="0";
 
     public String getEmployeeId() {
         return employeeId;

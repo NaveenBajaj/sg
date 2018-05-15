@@ -18,6 +18,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sg.bean.Employee;
+import com.sg.bean.EmployeeAccount;
 import com.sg.bean.Salary;
 import com.sg.services.CalculateSalary;
 import com.sg.services.EmployeeService;
@@ -63,9 +64,9 @@ public class EmployeeServiceResources {
 		Map<String, String> map = oMapper.readValue(employeeJsonStr, Map.class);
 
 		Employee employee = oMapper.convertValue(map.get("employee"), Employee.class);
-		Salary employeeSalary = oMapper.convertValue(map.get("salary"), Salary.class);
+		EmployeeAccount employeeAccount = oMapper.convertValue(map.get("employee_account"), EmployeeAccount.class);
 		employeeService.createEmployee(employee);
-		employeeService.createEmployeeSalary(employeeSalary);
+		employeeService.createEmployeeAccount(employeeAccount);
 		return Response.ok().build();
 	}
 
@@ -76,9 +77,9 @@ public class EmployeeServiceResources {
 		Map<String, String> map = oMapper.readValue(employeeJsonStr, Map.class);
 
 		Employee employee = oMapper.convertValue(map.get("employee"), Employee.class);
-		Salary employeeSalary = oMapper.convertValue(map.get("salary"), Salary.class);
+		EmployeeAccount employeeAccount = oMapper.convertValue(map.get("employee_account"), EmployeeAccount.class);
 		employeeService.updateEmployee(employee);
-		employeeService.updateEmployeeSalary(employeeSalary);
+		employeeService.updateEmployeeAccount(employeeAccount);
 		return Response.ok().build();
 	}
 
@@ -87,8 +88,8 @@ public class EmployeeServiceResources {
 	@Consumes("application/json")
 	public Response updateSalary(String salaryJsonStr) throws JsonParseException, JsonMappingException, IOException{
 		Salary employeeSalary = oMapper.readValue(salaryJsonStr, Salary.class);
-		employeeService.updateEmployeeSalary(employeeSalary);
-		return Response.ok().build();
+		Salary salary = employeeService.updateEmployeeSalary(employeeSalary);
+		return Response.ok().entity(oMapper.writeValueAsString(salary)).build();
 	}
 
 
