@@ -79,7 +79,7 @@ public class EmployeeServiceResources {
 		Salary employeeSalary = oMapper.convertValue(map.get("salary"), Salary.class);
 		employeeService.updateEmployee(employee);
 		employeeService.updateEmployeeSalary(employeeSalary);
-		return Response.ok().build();	
+		return Response.ok().build();
 	}
 
 	@POST

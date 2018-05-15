@@ -72,7 +72,8 @@ public class CalculateSalary {
         final int noOfLeaves = Integer.parseInt(salaryObject.getLeaves());
         final float multipleFactor = (NO_OF_DAYS_IN_A_MONTH - noOfLeaves) / NO_OF_DAYS_IN_A_MONTH;
         final float basicSalary = Float.parseFloat(employeeAccount.getBasicSalary()) * multipleFactor;
-        final float hra = Float.parseFloat(employeeAccount.getHra()) * multipleFactor;
+//        final float hra = Float.parseFloat(employeeAccount.getHra()) * multipleFactor;
+        final float hra = Float.parseFloat(employeeAccount.getHra()) ;
         final float convience = Float.parseFloat(employeeAccount.getConvience()) * multipleFactor;
         final float otherAllowance = Float.parseFloat(employeeAccount.getOtherAllowance()) * multipleFactor;
         salaryObject.setBasicSalary(String.valueOf(basicSalary));
