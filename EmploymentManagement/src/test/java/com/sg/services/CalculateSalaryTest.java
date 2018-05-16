@@ -4,12 +4,18 @@ import com.sg.bean.Employee;
 import com.sg.bean.Salary;
 import com.sg.dao.MySqlDAO;
 import com.sg.impl.MySqlImpl;
+import org.apache.commons.dbutils.BeanProcessor;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
+
 
 public class CalculateSalaryTest {
     CalculateSalary calculateSalary = spy(new CalculateSalary());
@@ -41,7 +47,7 @@ public class CalculateSalaryTest {
         final String empId = "101";
         when(mySqlImpl.getRecord("salary","employeeId", empId)).thenReturn(salaryObject);
         when(mySqlImpl.getRecord("employee","employeeId", empId)).thenReturn(employee);
-        Salary newSalaryObj = calculateSalary.getSalary("1");
+        Salary newSalaryObj = calculateSalary.getSalary("1","");
         System.out.println(newSalaryObj.getGrossSalary());
 
     }

@@ -80,6 +80,12 @@
     <artifactId>mysql-connector-java</artifactId>
     <version>5.1.46</version>
 </dependency>
+<!-- resultSet to bean -->
+	  <dependency>
+		  <groupId>commons-dbutils</groupId>
+		  <artifactId>commons-dbutils</artifactId>
+		  <version>1.1</version>
+	  </dependency>
 		
 	
   </dependencies>

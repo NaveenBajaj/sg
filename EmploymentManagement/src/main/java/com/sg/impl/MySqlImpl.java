@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -16,9 +17,20 @@ import com.sg.bean.Salary;
 import com.sg.connection.MySqlConnection;
 import com.sg.dao.MySqlDAO;
 import com.sg.services.Constants;
+import org.apache.commons.dbutils.BeanProcessor;
 
 public class MySqlImpl implements MySqlDAO {
     MySqlConnection connection;
+
+    private final static HashMap<String, Class> tableNameMap =new HashMap();
+     static{
+         tableNameMap.put(Constants.SALARY_TABLE_NAME,Salary.class);
+         tableNameMap.put(Constants.SALARY_TABLE_NAME,Employee.class);
+         tableNameMap.put(Constants.SALARY_TABLE_NAME,EmployeeAccount.class);
+     }
+
+    BeanProcessor bp = new BeanProcessor();
+
     
     public MySqlImpl(){
     	connection = new MySqlConnection("jdbc:mysql://localhost:3306/sg", "root", "pass");
@@ -55,7 +67,8 @@ public class MySqlImpl implements MySqlDAO {
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(query);
             while (result.next()) {
-                return resultSetToBean(tableName, result);
+//                return resultSetToBean(tableName, result);
+                return bp.toBean(result, tableNameMap.get(tableName));
             }
         } catch (Exception ex) {
         	ex.printStackTrace();

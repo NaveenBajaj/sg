@@ -17,18 +17,30 @@ public class CalculateSalary {
     final MySqlDAO mySqlDAO = new MySqlImpl();
     private float totalSalary = 0;
 
-    public final Salary getSalary(final String empId, final String salaryDate) {
+    private final Salary getSalaryObject(final String empId, final String salaryDate){
         Map<String, String> map = new HashMap<>();
         map.put("employeeId", empId);
         map.put("salaryDate", salaryDate);
-        
+
+        return (Salary) mySqlDAO.getRecord(Constants.SALARY_TABLE_NAME, map);
+    }
+
+    private final Employee getEmployeeObject(final String empId){
+        return (Employee) mySqlDAO.getRecord(Constants.EMPLOYEE_TABLE_NAME, "employeeId", empId);
+    }
+
+    private final EmployeeAccount getEmployeeAccountObject(final String empId, final String salaryDate){
         Map<String, String> empAccMap = new HashMap<>();
         empAccMap.put("employeeId", empId);
         empAccMap.put("effectiveDate", salaryDate);
 
-        final Salary salObject = (Salary) mySqlDAO.getRecord(Constants.SALARY_TABLE_NAME, map);
-        final Employee employee = (Employee) mySqlDAO.getRecord(Constants.EMPLOYEE_TABLE_NAME, "employeeId", empId);
-        final EmployeeAccount employeeAccount = (EmployeeAccount) mySqlDAO.getRecord(Constants.EMPLOYEE_ACCOUNT_TABLE_NAME, empAccMap);
+        return (EmployeeAccount) mySqlDAO.getRecord(Constants.EMPLOYEE_ACCOUNT_TABLE_NAME, empAccMap);
+    }
+
+    public final Salary getSalary(final String empId, final String salaryDate) {
+        final Salary salObject = getSalaryObject(empId,salaryDate);
+        final Employee employee = getEmployeeObject(empId);
+        final EmployeeAccount employeeAccount = getEmployeeAccountObject(empId,salaryDate);
         //select * from employee_account where employeeId="" and effectiveDate<="2019-04-31" order by effectiveDate desc limit 1;
 
         System.out.println(salObject);
@@ -54,14 +66,22 @@ public class CalculateSalary {
         salaryObject.setEsicAmount(String.valueOf(esicAmount));
         salaryObject.setNetPay(String.valueOf(netPay));
 
-        //update salary table with month and year
+        //update salary table with salaryDate
+        Map<String, String> map = new HashMap<>();
+        map.put("employeeId", empId);
+        map.put("salaryDate", salaryDate);
 
         // Convert POJO to Map
         ObjectMapper mapper = new ObjectMapper();
         Map<String, String> salaryMap =
                 mapper.convertValue(salaryObject, new TypeReference<Map<String, String>>() {
                 });
-        mySqlDAO.upsert(Constants.SALARY_TABLE_NAME, salaryMap, map);
+        if(salObject==null){
+            mySqlDAO.create(Constants.SALARY_TABLE_NAME, salaryMap);
+        }else{
+            mySqlDAO.update(Constants.SALARY_TABLE_NAME, salaryMap, map);
+        }
+
 
         return salaryObject;
     }
