@@ -61,7 +61,7 @@ public class CalculateSalary {
         Map<String, String> salaryMap =
                 mapper.convertValue(salaryObject, new TypeReference<Map<String, String>>() {
                 });
-        mySqlDAO.update(Constants.SALARY_TABLE_NAME, salaryMap, map);
+        mySqlDAO.upsert(Constants.SALARY_TABLE_NAME, salaryMap, map);
 
         return salaryObject;
     }

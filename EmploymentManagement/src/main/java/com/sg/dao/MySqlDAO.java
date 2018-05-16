@@ -11,4 +11,5 @@ public interface MySqlDAO {
     boolean remove(String tableName, String key, String id);
 	Object getRecord(String tableName, Map<String, String> keys);
 	boolean update(String tableName, Map<String, String> record, Map<String, String> keys);
+	boolean upsert(String tableName, Map<String, String> record, Map<String, String> keys);
 }

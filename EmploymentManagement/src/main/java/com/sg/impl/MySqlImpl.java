@@ -144,6 +144,28 @@ public class MySqlImpl implements MySqlDAO {
     }
     
     @Override
+    public boolean upsert(String tableName, Map<String, String> record, Map<String, String> keys) {
+//    	for(Map.Entry<String, String> entry : keys.entrySet()) {
+//    		record.remove(entry.getKey());
+//    	}
+    	 try {
+             Connection conn = connection.getConnection();
+             String query = "INSERT INTO " + tableName + "("
+                     + String.join(",", record.keySet())
+                     + ") values ('" + String.join("','", record.values()) + "')";
+             System.out.println(query);
+             Statement st = conn.createStatement();
+             return st.execute(query);
+
+         } catch (Exception e) {
+         	e.printStackTrace();
+             System.out.println(e.getMessage());
+         }
+         return false;
+
+    }
+    
+    @Override
     public boolean update(String tableName, Map<String, String> record, Map<String, String> keys) {
     	for(Map.Entry<String, String> entry : keys.entrySet()) {
     		record.remove(entry.getKey());
