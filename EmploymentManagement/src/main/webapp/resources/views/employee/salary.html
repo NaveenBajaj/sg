@@ -70,7 +70,7 @@
 					<label class="control-label col-sm-6" for="modelType">Basic
 						Salary: </label>
 					<div class="col-sm-6">
-						<label class="control-label" for="modelType">{{editEmployeeSalary.basicSalary}}
+						<label class="control-label" for="modelType">{{editEmployeeSalary.basicSalary | number : 2}}
 						</label>
 					</div>
 				</div>
@@ -78,7 +78,7 @@
 					<label class="control-label col-sm-6" for="modelType">HRA:
 					</label>
 					<div class="col-sm-6">
-						<label class="control-label" for="modelType">{{editEmployeeSalary.hra}}
+						<label class="control-label" for="modelType">{{editEmployeeSalary.hra | number : 2}}
 						</label>
 					</div>
 				</div>
@@ -86,7 +86,7 @@
 					<label class="control-label col-sm-6" for="modelType">Convience:
 					</label>
 					<div class="col-sm-6">
-						<label class="control-label" for="modelType">{{editEmployeeSalary.convience}}
+						<label class="control-label" for="modelType">{{editEmployeeSalary.convience | number : 2}}
 						</label>
 					</div>
 				</div>
@@ -94,8 +94,20 @@
 					<label class="control-label col-sm-6" for="modelType">Other
 						Allowance: </label>
 					<div class="col-sm-6">
-						<label class="control-label" for="modelType">{{editEmployeeSalary.otherAllowance}}
+						<label class="control-label" for="modelType">{{editEmployeeSalary.otherAllowance | number : 2}}
 						</label>
+					</div>
+				</div>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">Extra Hours:
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="col-sm-3"
+								placeholder="Enter leaves" name="name"
+								ng-model="editEmployeeSalary.leaves" 
+								ng-model-options="{debounce: 1000}" ng-change="updateLeaves()">
+							<label class="control-label" for="modelType">&nbsp;&nbsp;{{leavesDeduction | number : 2}}
+						</label>	
 					</div>
 				</div>
 				<hr>
@@ -103,7 +115,7 @@
 					<label class="control-label col-sm-6" for="modelType">Gross
 						Income: </label>
 					<div class="col-sm-6">
-						<label class="control-label" for="modelType">{{editEmployeeSalary.grossSalary}}
+						<label class="control-label" for="modelType">{{editEmployeeSalary.grossSalary | number : 2}}
 						</label>
 					</div>
 				</div>
@@ -111,7 +123,7 @@
 					<label class="control-label col-sm-6" for="modelType">Daily
 						Rate: </label>
 					<div class="col-sm-6">
-						<label class="control-label" for="modelType">{{editEmployeeSalary.ratePerDay}}
+						<label class="control-label" for="modelType">{{editEmployeeSalary.ratePerDay | number : 2}}
 						</label>
 					</div>
 				</div>
@@ -126,7 +138,7 @@
 					<label class="control-label col-sm-6" for="modelType">PF :
 					</label>
 					<div class="col-sm-6">
-						<label class="control-label" for="modelType">{{editEmployeeSalary.pfAmount}}
+						<label class="control-label" for="modelType">{{editEmployeeSalary.pfAmount | number : 2}}
 						</label>
 					</div>
 				</div>
@@ -134,7 +146,7 @@
 					<label class="control-label col-sm-6" for="modelType">ESIC:
 					</label>
 					<div class="col-sm-6">
-						<label class="control-label" for="modelType">{{editEmployeeSalary.esicAmount}}
+						<label class="control-label" for="modelType">{{editEmployeeSalary.esicAmount | number : 2}}
 						</label>
 					</div>
 				</div>
@@ -146,7 +158,7 @@
 								placeholder="Enter leaves" name="name"
 								ng-model="editEmployeeSalary.leaves" 
 								ng-model-options="{debounce: 1000}" ng-change="updateLeaves()">
-							<label class="control-label" for="modelType">&nbsp;&nbsp;{{leavesDeduction}}
+							<label class="control-label" for="modelType">&nbsp;&nbsp;{{leavesDeduction | number : 2}}
 						</label>	
 					</div>
 				</div>
@@ -156,7 +168,7 @@
 					<label class="control-label col-sm-6" for="modelType">Total
 						Deduction: </label>
 					<div class="col-sm-6">
-						<label class="control-label" for="modelType">{{totalDeduction}}
+						<label class="control-label" for="modelType">{{totalDeduction | number : 2}}
 						</label>
 					</div>
 				</div>
@@ -165,7 +177,7 @@
 					<label class="control-label col-sm-6" for="modelType">Net
 						Pay: </label>
 					<div class="col-sm-6">
-						<label class="control-label" for="modelType">{{editEmployeeSalary.netPay}}
+						<label class="control-label" for="modelType">{{editEmployeeSalary.netPay | number : 2}}
 						</label>
 					</div>
 				</div>

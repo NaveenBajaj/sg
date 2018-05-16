@@ -99,8 +99,10 @@ public class EmployeeServiceResources {
 	public Response calculateSalary(@PathParam("emp-id") final String empId, @PathParam("month") final String month, @PathParam("year") final String year) throws JsonProcessingException{
 		CalculateSalary cs = new CalculateSalary();
 		final String salaryDate = String.join("-",year,month,"01");
-		Salary salary = cs.getSalary(empId, salaryDate);
-		return Response.ok().entity(oMapper.writeValueAsString(salary)).build();
+		Salary salary = new Salary();
+		salary.setEmployeeId(empId);
+		salary.setSalaryDate(salaryDate);
+		return Response.ok().entity(oMapper.writeValueAsString(cs.getSalary(salary))).build();
 	}
 
 }

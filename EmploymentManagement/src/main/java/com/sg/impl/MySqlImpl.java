@@ -25,8 +25,8 @@ public class MySqlImpl implements MySqlDAO {
     private final static HashMap<String, Class> tableNameMap =new HashMap();
      static{
          tableNameMap.put(Constants.SALARY_TABLE_NAME,Salary.class);
-         tableNameMap.put(Constants.SALARY_TABLE_NAME,Employee.class);
-         tableNameMap.put(Constants.SALARY_TABLE_NAME,EmployeeAccount.class);
+         tableNameMap.put(Constants.EMPLOYEE_TABLE_NAME,Employee.class);
+         tableNameMap.put(Constants.EMPLOYEE_ACCOUNT_TABLE_NAME,EmployeeAccount.class);
      }
 
     BeanProcessor bp = new BeanProcessor();
@@ -84,7 +84,8 @@ public class MySqlImpl implements MySqlDAO {
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(query);
             while (result.next()) {
-                return resultSetToBean(tableName, result);
+                //return resultSetToBean(tableName, result);
+            	return bp.toBean(result, tableNameMap.get(tableName));
             }
         } catch (Exception ex) {
         	ex.printStackTrace();
@@ -187,11 +188,11 @@ public class MySqlImpl implements MySqlDAO {
             String updateQuery =
                     "UPDATE " + tableName + " SET " +
                             record.entrySet().stream()
-                                    .map(x -> x.getKey() + " = " + x.getValue())
+                                    .map(x -> x.getKey() + " = '" + x.getValue()+"'")
                                     .collect(Collectors.joining(", ")) +
                             " WHERE ";// + key + " = " + keyValue;
             for(Map.Entry<String, String> entry : keys.entrySet()) {
-            	updateQuery = updateQuery + entry.getKey() + " = " + entry.getValue();
+            	updateQuery = updateQuery + entry.getKey() + " = '" + entry.getValue()+"'";
             	updateQuery = updateQuery + " AND ";
             }
             updateQuery = updateQuery.substring(0, updateQuery.length() - 5);

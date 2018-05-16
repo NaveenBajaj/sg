@@ -45,10 +45,13 @@ public class CalculateSalaryTest {
     @Test
     public void getSalaryTest() {
         final String empId = "101";
-        when(mySqlImpl.getRecord("salary","employeeId", empId)).thenReturn(salaryObject);
-        when(mySqlImpl.getRecord("employee","employeeId", empId)).thenReturn(employee);
-        Salary newSalaryObj = calculateSalary.getSalary("1","");
-        System.out.println(newSalaryObj.getGrossSalary());
+//        when(mySqlImpl.getRecord("salary","employeeId", empId)).thenReturn(salaryObject);
+//        when(mySqlImpl.getRecord("employee","employeeId", empId)).thenReturn(employee);
+//        Salary newSalaryObj = calculateSalary.getSalary("1","");
+//        System.out.println(newSalaryObj.getGrossSalary());
+        float x = 30-3;
+        float mf = (float)(30-3)/30;
+        System.out.println(mf);
 
     }
 }

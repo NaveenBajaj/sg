@@ -51,7 +51,7 @@ public class EmployeeService {
 		map.put("salaryDate", salary.getSalaryDate());
 		mySqlDAO.update(Constants.SALARY_TABLE_NAME, (Map<String, String>) oMapper.convertValue(salary, Map.class), map);
 		CalculateSalary calculateSalary = new CalculateSalary();
-		return calculateSalary.getSalary(salary.getEmployeeId(), salary.getSalaryDate());
+		return calculateSalary.getSalary(salary);
 	}
 	
 	public boolean updateEmployeeAccount(EmployeeAccount employeeAccount){

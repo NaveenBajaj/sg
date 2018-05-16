@@ -28,6 +28,7 @@ angular.module('sgApp')
     			}
     		}).success(function(data) {
     			console.log(data);
+    			$scope.editEmployeeSalary = data;
     			$scope.leavesDeduction = Number($scope.editEmployeeSalary.leaves) * Number($scope.editEmployeeSalary.ratePerDay);
         		$scope.totalDeduction = Number($scope.editEmployeeSalary.pfAmount) + Number($scope.editEmployeeSalary.esicAmount) + $scope.leavesDeduction;
     			
