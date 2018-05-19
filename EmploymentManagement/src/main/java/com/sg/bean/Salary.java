@@ -5,12 +5,14 @@ public class Salary {
     private String salaryDate;
     private String noOfHours="0";
     private String extraHours="0";
+    private String extraIncome="0";
     private String basicSalary="0";
     private String hra="0";
     private String convience="0";
     private String otherAllowance="0";
     private String ratePerDay="0";
     private String leaves="0";
+    private String leavesDeduction="0";
     private String pfAmount="0";
     private String esicAmount="0";
     private String grossSalary="0";
@@ -126,5 +128,21 @@ public class Salary {
 
     public void setNetPay(String netPay) {
         this.netPay = netPay;
+    }
+
+    public String getExtraIncome() {
+        return extraIncome;
+    }
+
+    public void setExtraIncome(String extraIncome) {
+        this.extraIncome = extraIncome;
+    }
+
+    public String getLeavesDeduction() {
+        return leavesDeduction;
+    }
+
+    public void setLeavesDeduction(String leavesDeduction) {
+        this.leavesDeduction = leavesDeduction;
     }
 }

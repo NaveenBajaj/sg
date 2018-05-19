@@ -1,9 +1,6 @@
 package com.sg.services;
 
-import java.time.LocalDate;
 import java.time.YearMonth;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,7 +61,7 @@ public class CalculateSalary {
         final Salary salaryObject = updateSalaryObject(salObject, employeeAccount);
 //        final int totalSalary = getSalarySum(salaryObject);
         final float ratePerDay = getRatePerDay(totalSalary);
-//        final int leavesMoney = getLeavesMoney(salaryObject, ratePerDay);
+        final float leavesDeduction = getLeavesDeduction(salaryObject, ratePerDay);
         final float extraIncome = getExtraHourIncome(salaryObject, ratePerDay);
         final float grossIncome = totalSalary + extraIncome;
         final float basicSalary = Float.parseFloat(salaryObject.getBasicSalary());
@@ -79,6 +76,8 @@ public class CalculateSalary {
         salaryObject.setSalaryDate(salaryDate);
         salaryObject.setEmployeeId(empId);
         salaryObject.setLeaves(salaryObject.getLeaves());
+        salaryObject.setLeavesDeduction(String.valueOf(leavesDeduction));
+        salaryObject.setExtraIncome(String.valueOf(extraIncome));
 
         //update salary table with salaryDate
         Map<String, String> map = new HashMap<>();
@@ -119,6 +118,7 @@ public class CalculateSalary {
         final float hra = Float.parseFloat(employeeAccount.getHra()) ;
         final float convience = Float.parseFloat(employeeAccount.getConvience()) * multipleFactor;
         final float otherAllowance = Float.parseFloat(employeeAccount.getOtherAllowance()) * multipleFactor;
+        final float leavesDeduction = Float.parseFloat(employeeAccount.getOtherAllowance()) * multipleFactor;
         salaryObject.setBasicSalary(String.valueOf(basicSalary));
         salaryObject.setHra(String.valueOf(hra));
         salaryObject.setConvience(String.valueOf(convience));
@@ -132,7 +132,7 @@ public class CalculateSalary {
         return totalSalary / noOfDaysInMonth;
     }
 
-    private final int getLeavesMoney(final Salary salaryObject, final int ratePerDay) {
+    private final float getLeavesDeduction(final Salary salaryObject, final float ratePerDay) {
         if (salaryObject.getLeaves() == null) {
             return 0;
         }
@@ -144,7 +144,7 @@ public class CalculateSalary {
         if (salaryObject.getExtraHours() == null) {
             return 0;
         }
-        final int noOfExtraDays = Integer.parseInt(salaryObject.getExtraHours()) / Constants.NO_OF_HOURS_IN_A_DAY;
+        final float noOfExtraDays = Float.parseFloat(salaryObject.getExtraHours()) / Constants.NO_OF_HOURS_IN_A_DAY;
         return noOfExtraDays * ratePerDay;
     }
 
