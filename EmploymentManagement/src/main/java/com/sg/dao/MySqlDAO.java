@@ -10,6 +10,7 @@ public interface MySqlDAO {
     boolean update(String tableName, Map<String, String> map, String key);
     boolean remove(String tableName, String key, String id);
 	Object getRecord(String tableName, Map<String, String> keys);
+	Object getRecordOrderByLimit(String tableName, Map<String, String> keys, String orderByCol, String limit);
 	boolean update(String tableName, Map<String, String> record, Map<String, String> keys);
 	boolean upsert(String tableName, Map<String, String> record, Map<String, String> keys);
 }

@@ -53,6 +53,7 @@ public class MySqlImpl implements MySqlDAO {
         }
         return false;
     }
+
     @Override
     public Object getRecord(String tableName, Map<String, String> keys) {
         String query = "SELECT * FROM " + tableName + " where "; 
@@ -76,6 +77,33 @@ public class MySqlImpl implements MySqlDAO {
         }
         return null;
     }
+
+    @Override
+    public Object getRecordOrderByLimit(String tableName, Map<String, String> keys, String orderByCol, String limit) {
+        String query = "SELECT * FROM " + tableName + " where ";
+        for(Map.Entry<String, String> entry : keys.entrySet()) {
+        	query = query + entry.getKey() + " = '" + entry.getValue() + "'";
+        	query = query + " AND ";
+        }
+        query = query.substring(0, query.length() - 5);
+        query = query +" order by "+orderByCol+" desc limit "+limit;
+        System.out.println("getRecord query: " + query);
+        try {
+            Connection conn = connection.getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(query);
+            while (result.next()) {
+                return bp.toBean(result, tableNameMap.get(tableName));
+            }
+
+        } catch (Exception ex) {
+        	ex.printStackTrace();
+            System.out.println(ex.getMessage());
+        }
+        return null;
+    }
+
+
     @Override
     public Object getRecord(String tableName, String key, String id) {
         String query = "SELECT * FROM " + tableName + " where " + key + " = " + id + "";
