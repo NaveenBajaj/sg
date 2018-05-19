@@ -14,13 +14,12 @@ angular.module('sgApp')
     	.success(function(response) {
     		console.log(response);
     		$scope.editEmployeeSalary = response;
-    		$scope.extraIncome = (Number($scope.editEmployeeSalary.extraHours) / 10) * Number($scope.editEmployeeSalary.ratePerDay);
-    		$scope.leavesDeduction = Number($scope.editEmployeeSalary.leaves) * Number($scope.editEmployeeSalary.ratePerDay);
-    		$scope.totalDeduction = Number($scope.editEmployeeSalary.pfAmount) + Number($scope.editEmployeeSalary.esicAmount) + $scope.leavesDeduction;
+    		$scope.totalDeduction = Number($scope.editEmployeeSalary.pfAmount) + Number($scope.editEmployeeSalary.esicAmount) + Number($scope.editEmployeeSalary.leavesDeduction);
+    		console.log($scope.totalDeduction);
     	});
     	
     	
-    	$scope.updateLeaves = function(){
+    	$scope.updateSalary = function(){
     		console.log($scope.editEmployeeSalary)
     		$scope.editEmployeeSalary.employeeId = $scope.editEmployee.employeeId;
     		$http.post('/api/employee/'+$scope.employeeId+'/update-salary', $scope.editEmployeeSalary, {
@@ -30,8 +29,7 @@ angular.module('sgApp')
     		}).success(function(data) {
     			console.log(data);
     			$scope.editEmployeeSalary = data;
-    			$scope.leavesDeduction = Number($scope.editEmployeeSalary.leaves) * Number($scope.editEmployeeSalary.ratePerDay);
-        		$scope.totalDeduction = Number($scope.editEmployeeSalary.pfAmount) + Number($scope.editEmployeeSalary.esicAmount) + $scope.leavesDeduction;
+        		$scope.totalDeduction = Number($scope.editEmployeeSalary.pfAmount) + Number($scope.editEmployeeSalary.esicAmount) + Number($scope.editEmployeeSalary.leavesDeduction);
     			
     		}).error(function(data) {
     			console.log(data);
