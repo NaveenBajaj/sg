@@ -61,13 +61,13 @@ public class EmployeeService {
 		return mySqlDAO.update(Constants.EMPLOYEE_ACCOUNT_TABLE_NAME, (Map<String, String>) oMapper.convertValue(employeeAccount, Map.class), map);
 	}
 	
-	public Salary getEmployeeSalary(String empId, String month, String year){
-		final String salaryDate = String.join("-",year,month,"01");
+	public EmployeeAccount getEmployeeSalary(String empId, String month, String year){
+		final String effectiveDate = String.join("-",year,month,"01");
 		Map<String, String> map = new HashMap<>();
 		map.put("employeeId", empId);
-		map.put("salaryDate", salaryDate);
-		Salary salary = (Salary) mySqlDAO.getRecord(Constants.SALARY_TABLE_NAME, map);
-		return salary;
+		map.put("effectiveDate", effectiveDate);
+		EmployeeAccount empAccount = (EmployeeAccount) mySqlDAO.getRecord(Constants.EMPLOYEE_ACCOUNT_TABLE_NAME, map);
+		return empAccount;
 	}
 	
 	public boolean updateEmployeeSalary(Salary salary, String empId, String month, String year){

@@ -54,8 +54,8 @@ public class EmployeeServiceResources {
 	@Path("/{emp-id}/salary/{month}/{year}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getSalary(@PathParam("emp-id") final String empId, @PathParam("month") final String month, @PathParam("year") final String year) throws JsonProcessingException{
-		Salary salary = employeeService.getEmployeeSalary(empId, month, year);
-		return Response.ok().entity(oMapper.writeValueAsString(salary)).build();
+		EmployeeAccount empAccount = employeeService.getEmployeeSalary(empId, month, year);
+		return Response.ok().entity(oMapper.writeValueAsString(empAccount)).build();
 	}
 
 	@POST

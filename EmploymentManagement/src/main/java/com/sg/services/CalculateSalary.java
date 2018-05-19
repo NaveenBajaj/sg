@@ -65,7 +65,7 @@ public class CalculateSalary {
         final float basicSalary = Float.parseFloat(salaryObject.getBasicSalary());
         final double pfAmount = Math.round(getPf(employee, grossIncome, basicSalary) * 100.0) / 100.0;
         final double esicAmount = Math.round(getEsic(employee, grossIncome, basicSalary) * 100.0) / 100.0;
-        final double netPay = grossIncome - pfAmount - esicAmount;
+        final double netPay = Math.round((grossIncome - pfAmount - esicAmount)* 100.0) / 100.0;
         salaryObject.setRatePerDay(String.valueOf(ratePerDay));
         salaryObject.setGrossSalary(String.valueOf(grossIncome));
         salaryObject.setPfAmount(String.valueOf(pfAmount));

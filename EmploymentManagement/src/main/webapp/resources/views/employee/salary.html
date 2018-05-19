@@ -104,9 +104,9 @@
 					<div class="col-sm-6">
 						<input type="text" class="col-sm-3"
 								placeholder="Enter leaves" name="name"
-								ng-model="editEmployeeSalary.leaves" 
-								ng-model-options="{debounce: 1000}" ng-change="updateLeaves()">
-							<label class="control-label" for="modelType">&nbsp;&nbsp;{{leavesDeduction | number : 2}}
+								ng-model="editEmployeeSalary.extraHours" 
+								ng-model-options="{debounce: 1000}" ng-change="updateSalary()">
+							<label class="control-label" for="modelType">&nbsp;&nbsp;{{editEmployeeSalary.extraIncome | number : 2}}
 						</label>	
 					</div>
 				</div>
@@ -157,8 +157,8 @@
 						<input type="text" class="col-sm-3"
 								placeholder="Enter leaves" name="name"
 								ng-model="editEmployeeSalary.leaves" 
-								ng-model-options="{debounce: 1000}" ng-change="updateLeaves()">
-							<label class="control-label" for="modelType">&nbsp;&nbsp;{{leavesDeduction | number : 2}}
+								ng-model-options="{debounce: 1000}" ng-change="updateSalary()">
+							<label class="control-label" for="modelType">&nbsp;&nbsp;{{editEmployeeSalary.leavesDeduction | number : 2}}
 						</label>	
 					</div>
 				</div>
