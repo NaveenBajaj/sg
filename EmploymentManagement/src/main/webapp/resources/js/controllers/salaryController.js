@@ -14,6 +14,7 @@ angular.module('sgApp')
     	.success(function(response) {
     		console.log(response);
     		$scope.editEmployeeSalary = response;
+    		$scope.extraIncome = (Number($scope.editEmployeeSalary.extraHours) / 10) * Number($scope.editEmployeeSalary.ratePerDay);
     		$scope.leavesDeduction = Number($scope.editEmployeeSalary.leaves) * Number($scope.editEmployeeSalary.ratePerDay);
     		$scope.totalDeduction = Number($scope.editEmployeeSalary.pfAmount) + Number($scope.editEmployeeSalary.esicAmount) + $scope.leavesDeduction;
     	});
