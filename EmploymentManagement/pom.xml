@@ -95,17 +95,27 @@
     <pluginManagement>
     <plugins>
     	<plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-jar-plugin</artifactId>
-        <configuration>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-assembly-plugin</artifactId>
+    <executions>
+      <execution>
+         <goals>
+           <goal>attached</goal>
+         </goals>
+<phase>package</phase>
+         <configuration>
+           <descriptorRefs>
+             <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
           <archive>
             <manifest>
-              <addClasspath>true</addClasspath>
               <mainClass>com.sg.SgServer</mainClass>
             </manifest>
-         </archive>
-       </configuration>
-    </plugin>
+          </archive>
+        </configuration>
+     </execution>
+  </executions>
+</plugin>
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-compiler-plugin</artifactId>
