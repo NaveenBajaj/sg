@@ -53,8 +53,6 @@ public class CalculateSalary {
         final EmployeeAccount employeeAccount = getEmployeeAccountObject(empId,salaryDate);
         //select * from employee_account where employeeId="" and effectiveDate<="2019-04-31" order by effectiveDate desc limit 1;
 
-        System.out.println(salObject);
-
         // To-Do: rateperday or fixed?
         //final int ratePerDayFixed = Integer.parseInt(employeeAccount.getRatePerDay());
         

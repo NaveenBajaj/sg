@@ -94,49 +94,6 @@ public class MySqlImpl implements MySqlDAO {
         return null;
     }
 
-    private Object resultSetToBean(String tableName, ResultSet result) throws SQLException {
-        if (tableName.equalsIgnoreCase(Constants.EMPLOYEE_TABLE_NAME)) {
-            Employee employee = new Employee();
-            employee.setEmployeeId(result.getString("employeeId"));
-            employee.setFirstName(result.getString("firstName"));
-            employee.setLastName(result.getString("lastName"));
-            employee.setAadharId(result.getString("aadharId"));
-            employee.setMobileNo(result.getString("mobileNo"));
-            employee.setPf(result.getString("pf"));
-            employee.setEsic(result.getString("esic"));
-            employee.setFatherName(result.getString("fatherName"));
-            employee.setIsPf(result.getString("isPf"));
-            employee.setIsEsic(result.getString("isEsic"));
-            employee.setPosition(result.getString("position"));
-            employee.setAddress(result.getString("address"));
-            employee.setSalaryBasis(result.getString("salaryBasis"));
-            return employee;
-        } else if(tableName.equalsIgnoreCase(Constants.SALARY_TABLE_NAME)){
-            Salary salary = new Salary();
-            salary.setEmployeeId(result.getString("employeeId"));
-            salary.setSalaryDate(result.getString("salaryDate"));
-            salary.setNoOfHours(result.getString("noOfHours"));
-            salary.setExtraHours(result.getString("extraHours"));
-            salary.setBasicSalary(result.getString("basicSalary"));
-            salary.setHra(result.getString("hra"));
-            salary.setConvience(result.getString("convience"));
-            salary.setOtherAllowance(result.getString("otherAllowance"));
-            salary.setRatePerDay(result.getString("ratePerDay"));
-            salary.setLeaves(result.getString("leaves"));
-            return salary;
-        } else if(tableName.equalsIgnoreCase(Constants.EMPLOYEE_ACCOUNT_TABLE_NAME)){
-            EmployeeAccount employeeAccount = new EmployeeAccount();
-            employeeAccount.setEmployeeId(result.getString("employeeId"));
-            employeeAccount.setEffectiveDate(result.getString("effectiveDate"));
-            employeeAccount.setBasicSalary(result.getString("basicSalary"));
-            employeeAccount.setHra(result.getString("hra"));
-            employeeAccount.setConvience(result.getString("convience"));
-            employeeAccount.setOtherAllowance(result.getString("otherAllowance"));
-            employeeAccount.setRatePerDay(result.getString("ratePerDay"));
-            return employeeAccount;
-        }
-        return null;
-    }
 
     @Override
     public List<Object> getAll(String tableName) {
@@ -149,7 +106,8 @@ public class MySqlImpl implements MySqlDAO {
             ResultSet result = statement.executeQuery(query);
 
             while (result.next()) {
-                list.add(resultSetToBean(tableName, result));
+//                list.add(resultSetToBean(tableName, result));
+                list.add(bp.toBean(result, tableNameMap.get(tableName)));
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
