@@ -16,6 +16,7 @@ public class CalculateSalary {
     final MySqlDAO mySqlDAO = new MySqlImpl();
     private float totalSalary = 0;
     private int noOfDaysInMonth;
+    private boolean isPackage;
 
     private final Salary getSalaryObject(final String empId, final String salaryDate){
         Map<String, String> map = new HashMap<>();
@@ -55,6 +56,12 @@ public class CalculateSalary {
 
         // To-Do: rateperday or fixed?
         //final int ratePerDayFixed = Integer.parseInt(employeeAccount.getRatePerDay());
+        if(employee.getSalaryBasis().equalsIgnoreCase("package")){
+            isPackage = true;
+        }else{
+            isPackage = false;
+        }
+
         
         final Salary salaryObject = updateSalaryObject(salObject, employeeAccount);
 //        final int totalSalary = getSalarySum(salaryObject);
@@ -116,13 +123,17 @@ public class CalculateSalary {
         final float hra = Float.parseFloat(employeeAccount.getHra()) ;
         final float convience = Float.parseFloat(employeeAccount.getConvience()) * multipleFactor;
         final float otherAllowance = Float.parseFloat(employeeAccount.getOtherAllowance()) * multipleFactor;
-        final float leavesDeduction = Float.parseFloat(employeeAccount.getOtherAllowance()) * multipleFactor;
         salaryObject.setBasicSalary(String.valueOf(basicSalary));
         salaryObject.setHra(String.valueOf(hra));
         salaryObject.setConvience(String.valueOf(convience));
         salaryObject.setOtherAllowance(String.valueOf(otherAllowance));
         salaryObject.setLeaves(String.valueOf(noOfLeaves));
-        totalSalary = basicSalary + hra + convience + otherAllowance;
+        salaryObject.setRatePerDay(employeeAccount.getRatePerDay());
+        if(isPackage) {
+            totalSalary = basicSalary + hra + convience + otherAllowance;
+        }else{
+            totalSalary = Float.parseFloat(employeeAccount.getRatePerDay()) * (noOfDaysInMonth - noOfLeaves);
+        }
         return salaryObject;
     }
 
