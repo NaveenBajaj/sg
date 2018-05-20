@@ -63,11 +63,70 @@
 			</form>
 		</div>
 	</div>
+	<div ng-if="editEmployee.salaryBasis == 'daily'">
+	<div class="panel panel-default col-sm-5" style="padding: 0;margin-right:20px;">
+		<div class="panel-heading">Earnings</div>
+		<div class="panel-body">
+		<form class="form-horizontal" role="form">
+		<div class="form-group" style="margin-top: 10px;">
+		
+					<label class="control-label col-sm-6" for="modelType">No of
+						days: </label>
+					<div class="col-sm-6">
+						<label class="control-label" for="modelType">{{editEmployeeSalary.noOfDays}}
+						</label>
+					</div>
+				</div>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">Daily
+						Rate: </label>
+					<div class="col-sm-6">
+						<label class="control-label" for="modelType">{{editEmployeeSalary.ratePerDay | number : 2}}
+						</label>
+					</div>
+				</div>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">Extra Hours:
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="col-sm-3"
+								placeholder="Enter leaves" name="name"
+								ng-model="editEmployeeSalary.extraHours" 
+								ng-model-options="{debounce: 1000}" ng-change="updateSalary()">
+							<label class="control-label" for="modelType">&nbsp;&nbsp;{{editEmployeeSalary.extraIncome | number : 2}}
+						</label>	
+					</div>
+				</div>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">Leaves:
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="col-sm-3"
+								placeholder="Enter leaves" name="name"
+								ng-model="editEmployeeSalary.leaves" 
+								ng-model-options="{debounce: 1000}" ng-change="updateSalary()">
+							<label class="control-label" for="modelType">&nbsp;&nbsp;{{editEmployeeSalary.leavesDeduction | number : 2}}
+						</label>	
+					</div>
+				</div>
+				<hr>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">Gross
+						Income: </label>
+					<div class="col-sm-6">
+						<label class="control-label" for="modelType">{{editEmployeeSalary.grossSalary | number : 2}}
+						</label>
+					</div>
+				</div>
+				</form>
+				</div>
+		</div>
+		</div>
+	<div ng-if="editEmployee.salaryBasis == 'package'">
 	<div class="panel panel-default col-sm-5" style="padding: 0;margin-right:20px;">
 		<div class="panel-heading">Earnings</div>
 		<div class="panel-body">
 			<form class="form-horizontal" role="form">
-			<div ng-if="editEmployee.salaryBasis == 'package'">
 				<div class="form-group" style="margin-top: 10px;">
 					<label class="control-label col-sm-6" for="modelType">Basic
 						Salary: </label>
@@ -100,8 +159,7 @@
 						</label>
 					</div>
 				</div>
-				</div>
-				<div ng-if="editEmployee.salaryBasis == 'daily'">
+				
 				<div class="form-group" style="margin-top: 10px;">
 					<label class="control-label col-sm-6" for="modelType">No of
 						days: </label>
@@ -109,7 +167,6 @@
 						<label class="control-label" for="modelType">{{editEmployeeSalary.noOfDays}}
 						</label>
 					</div>
-				</div>
 				</div>
 				<div class="form-group" style="margin-top: 10px;">
 					<label class="control-label col-sm-6" for="modelType">Daily
@@ -131,6 +188,7 @@
 						</label>	
 					</div>
 				</div>
+				
 				<hr>
 				<div class="form-group" style="margin-top: 10px;">
 					<label class="control-label col-sm-6" for="modelType">Gross
@@ -142,13 +200,14 @@
 				</div>
 				
 			</form>
+			</div>
 		</div>
 	</div>
+	<div ng-if="editEmployee.salaryBasis == 'package'">
 	<div class="panel panel-default col-sm-5" style="padding: 0;">
 		<div class="panel-heading">Deductions</div>
 		<div class="panel-body">
 			<form class="form-horizontal" role="form">
-			<div ng-if="editEmployee.salaryBasis == 'package'">
 				<div class="form-group" style="margin-top: 10px;">
 					<label class="control-label col-sm-6" for="modelType">PF :
 					</label>
@@ -164,7 +223,6 @@
 						<label class="control-label" for="modelType">{{editEmployeeSalary.esicAmount | number : 2}}
 						</label>
 					</div>
-				</div>
 				</div>
 				<div class="form-group" style="margin-top: 10px;">
 					<label class="control-label col-sm-6" for="modelType">Leaves:
@@ -198,6 +256,7 @@
 					</div>
 				</div>
 			</form>
+		</div>
 		</div>
 	</div>
 </div>

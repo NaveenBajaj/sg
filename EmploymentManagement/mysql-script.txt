@@ -29,7 +29,7 @@ FOREIGN KEY (employeeId) REFERENCES employee(employeeId)
 create table salary (
 employeeId varchar(10),
 salaryDate date,
-noOfHours varchar(10),
+noOfDays varchar(10),
 extraHours varchar(10),
 extraIncome varchar(10),
 basicSalary varchar(10),
@@ -43,6 +43,7 @@ pfAmount varchar(10),
 esicAmount varchar(10),
 grossSalary varchar(10),
 netPay varchar(10),
+totalDeduction varchar(10),
 PRIMARY KEY (employeeId,salaryDate),
 FOREIGN KEY (employeeId) REFERENCES employee(employeeId)
 );

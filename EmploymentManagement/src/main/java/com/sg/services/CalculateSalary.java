@@ -66,6 +66,8 @@ public class CalculateSalary {
         if (salaryObject == null) {
             createSalaryObj = true;
             salaryObject = new Salary();
+            salaryObject.setSalaryDate(salaryDate);
+            salaryObject.setEmployeeId(empId);
         }
 
         final int noOfLeaves = Integer.parseInt(salaryObject.getLeaves());
@@ -110,6 +112,8 @@ public class CalculateSalary {
             salObject.setNetPay(String.valueOf(totalSalary));
         }
 
+        leavesDeduction = Math.round(leavesDeduction * 100.0 / 100.0);
+        totalDeductions = Math.round(totalDeductions * 100.0 / 100.0);
         salObject.setLeavesDeduction(String.valueOf(leavesDeduction));
         salObject.setTotalDeduction(String.valueOf(totalDeductions));
         return salObject;
@@ -154,7 +158,7 @@ public class CalculateSalary {
             return 0;
         }
         final int noOfLeaves = Integer.parseInt(salaryObject.getLeaves());
-        final int ratePerDay = Integer.parseInt(salaryObject.getRatePerDay());
+        final float ratePerDay = Float.parseFloat(salaryObject.getRatePerDay());
         return noOfLeaves * ratePerDay;
     }
 
