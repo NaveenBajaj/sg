@@ -3,7 +3,7 @@ package com.sg.bean;
 public class Salary {
     private String employeeId;
     private String salaryDate;
-    private String noOfHours="0";
+    private String noOfDays="0";
     private String extraHours="0";
     private String extraIncome="0";
     private String basicSalary="0";
@@ -17,6 +17,7 @@ public class Salary {
     private String esicAmount="0";
     private String grossSalary="0";
     private String netPay="0";
+    private String totalDeduction="0";
 
     public String getEmployeeId() {
         return employeeId;
@@ -34,12 +35,12 @@ public class Salary {
         this.salaryDate = salaryDate;
     }
 
-    public String getNoOfHours() {
-        return noOfHours;
+    public String getNoOfDays() {
+        return noOfDays;
     }
 
-    public void setNoOfHours(String noOfHours) {
-        this.noOfHours = noOfHours;
+    public void setNoOfDays(String noOfDays) {
+        this.noOfDays = noOfDays;
     }
 
     public String getExtraHours() {
@@ -144,5 +145,13 @@ public class Salary {
 
     public void setLeavesDeduction(String leavesDeduction) {
         this.leavesDeduction = leavesDeduction;
+    }
+
+    public String getTotalDeduction() {
+        return totalDeduction;
+    }
+
+    public void setTotalDeduction(String totalDeduction) {
+        this.totalDeduction = totalDeduction;
     }
 }
