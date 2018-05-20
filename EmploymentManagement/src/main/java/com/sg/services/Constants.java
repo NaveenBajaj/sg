@@ -5,7 +5,7 @@ public class Constants {
     public static final String EMPLOYEE_TABLE_NAME = "employee";
     public static final String EMPLOYEE_ACCOUNT_TABLE_NAME = "employee_account";
 
-    public static final int MAXIMUM_PF_AMOUNT= 10000;
+    public static final int MAXIMUM_PF_AMOUNT= 15000;
     public static final int MAXIMUM_ESIC_AMOUNT = 21000;
     public static final int NO_OF_HOURS_IN_A_DAY = 10;
     public static final int NO_OF_DAYS_IN_A_MONTH = 30;
