@@ -16,22 +16,31 @@ public class MySqlConnection {
         this.jdbcPassword = jdbcPassword;
     }
 
-    public Connection getConnection() throws SQLException {
-        if (jdbcConnection == null || jdbcConnection.isClosed()) {
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-            } catch (ClassNotFoundException e) {
-                throw new SQLException(e);
+    public Connection getConnection() {
+        try {
+            if (jdbcConnection == null || jdbcConnection.isClosed()) {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                    System.err.println(e.getMessage());
+                }
+                jdbcConnection = DriverManager.getConnection(
+                        jdbcURL, jdbcUsername, jdbcPassword);
             }
-            jdbcConnection = DriverManager.getConnection(
-                    jdbcURL, jdbcUsername, jdbcPassword);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-            return jdbcConnection;
+        return jdbcConnection;
     }
 
-    public void closeConnection() throws SQLException {
-        if (jdbcConnection != null && !jdbcConnection.isClosed()) {
-            jdbcConnection.close();
+    public void closeConnection() {
+        try {
+            if (jdbcConnection != null && !jdbcConnection.isClosed()) {
+                jdbcConnection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
