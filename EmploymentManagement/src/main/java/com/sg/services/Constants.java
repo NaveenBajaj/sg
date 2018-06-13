@@ -8,9 +8,13 @@ public class Constants {
     public static final int MAXIMUM_PF_AMOUNT= 15000;
     public static final int MAXIMUM_ESIC_AMOUNT = 21000;
     public static final int NO_OF_HOURS_IN_A_DAY = 10;
-    public static final int NO_OF_DAYS_IN_A_MONTH = 30;
 
     public static final double PF_PERCENT = .12;
     public static final double ESIC_PERCENT = .0175;
+
+    public static final double BASIC_PERCENT = .60;
+    public static final double HRA_PERCENT = .25;
+    public static final double CONVIENCE_PERCENT = .10;
+    public static final double OTHER_ALLOWANCE_PERCENT = .05;
 
 }

@@ -99,7 +99,7 @@ public class CalculateSalary {
     private Salary totalDeduction(final Employee employee, final Salary salObject) {
         float leavesDeduction = getLeavesDeduction(salObject);
         double totalDeductions = leavesDeduction;
-        if (isPackage) {
+//        if (isPackage) {
             final float basicSalary = Float.parseFloat(salObject.getBasicSalary());
             final double pfAmount = Math.round(getPf(employee, basicSalary) * 100.0) / 100.0;
             final double esicAmount = Math.round(getEsic(employee, totalSalary) * 100.0) / 100.0;
@@ -108,9 +108,9 @@ public class CalculateSalary {
             salObject.setPfAmount(String.valueOf(pfAmount));
             salObject.setEsicAmount(String.valueOf(esicAmount));
             salObject.setNetPay(String.valueOf(netPay));
-        } else {
-            salObject.setNetPay(String.valueOf(totalSalary));
-        }
+//        } else {
+//            salObject.setNetPay(String.valueOf(totalSalary));
+//        }
 
         leavesDeduction = Math.round(leavesDeduction * 100.0 / 100.0);
         totalDeductions = Math.round(totalDeductions * 100.0 / 100.0);
@@ -138,6 +138,11 @@ public class CalculateSalary {
             salObject.setOtherAllowance(String.valueOf(otherAllowance * multiplicationFactor));
         } else {
             ratePerDay = Float.parseFloat(employeeAccount.getRatePerDay());
+            final float incomeOfMonth = ratePerDay * noOfWorkingDays;
+            salObject.setBasicSalary(String.valueOf(incomeOfMonth * Constants.BASIC_PERCENT));
+            salObject.setHra(String.valueOf(incomeOfMonth * Constants.HRA_PERCENT));
+            salObject.setConvience(String.valueOf(incomeOfMonth * Constants.CONVIENCE_PERCENT));
+            salObject.setOtherAllowance(String.valueOf(incomeOfMonth * Constants.OTHER_ALLOWANCE_PERCENT));
         }
 
 
