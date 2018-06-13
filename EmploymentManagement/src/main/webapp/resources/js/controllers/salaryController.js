@@ -14,7 +14,7 @@ angular.module('sgApp')
     	.success(function(response) {
     		console.log(response);
     		$scope.editEmployeeSalary = response;
-    		$scope.totalDeduction = Number($scope.editEmployeeSalary.pfAmount) + Number($scope.editEmployeeSalary.esicAmount) + Number($scope.editEmployeeSalary.leavesDeduction);
+    		//$scope.totalDeduction = Number($scope.editEmployeeSalary.pfAmount) + Number($scope.editEmployeeSalary.esicAmount) + Number($scope.editEmployeeSalary.leavesDeduction);
     		console.log($scope.totalDeduction);
     	});
     	

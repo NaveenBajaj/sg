@@ -9,7 +9,7 @@
 		<div class="panel-heading">General information</div>
 		<div class="panel-body">
 			<form class="form-horizontal" role="form">
-				<div>
+				<div class="col-sm-6">
 					<div class="form-group" style="margin-top: 10px;">
 						<label class="control-label col-sm-3" for="modelType">EmployeeId:
 						</label>
@@ -59,6 +59,41 @@
 						</div>
 					</div>
 					<div class="form-group" style="margin-top: 10px;"></div>
+				</div>
+				<div class="col-sm-6">
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">Worked
+						days: </label>
+					<div class="col-sm-6">
+						<label class="control-label" for="modelType">{{editEmployeeSalary.noOfDays}}
+						</label>
+					</div>
+				</div>
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">Leaves (days):
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="col-sm-3"
+								placeholder="Enter leaves" name="name"
+								ng-model="editEmployeeSalary.leaves" 
+								ng-model-options="{debounce: 1000}" ng-change="updateSalary()">
+							<label class="control-label" for="modelType">&nbsp;&nbsp;{{editEmployeeSalary.leavesDeduction | number : 2}}
+						</label>	
+					</div>
+				</div>
+				
+				<div class="form-group" style="margin-top: 10px;">
+					<label class="control-label col-sm-6" for="modelType">Extra Hours:
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="col-sm-3"
+								placeholder="Enter leaves" name="name"
+								ng-model="editEmployeeSalary.extraHours" 
+								ng-model-options="{debounce: 1000}" ng-change="updateSalary()">
+							<label class="control-label" for="modelType">&nbsp;&nbsp;{{editEmployeeSalary.extraIncome | number : 2}}
+						</label>	
+					</div>
+				</div>
 				</div>
 			</form>
 		</div>
@@ -159,33 +194,12 @@
 						</label>
 					</div>
 				</div>
-				
-				<div class="form-group" style="margin-top: 10px;">
-					<label class="control-label col-sm-6" for="modelType">No of
-						days: </label>
-					<div class="col-sm-6">
-						<label class="control-label" for="modelType">{{editEmployeeSalary.noOfDays}}
-						</label>
-					</div>
-				</div>
 				<div class="form-group" style="margin-top: 10px;">
 					<label class="control-label col-sm-6" for="modelType">Daily
 						Rate: </label>
 					<div class="col-sm-6">
 						<label class="control-label" for="modelType">{{editEmployeeSalary.ratePerDay | number : 2}}
 						</label>
-					</div>
-				</div>
-				<div class="form-group" style="margin-top: 10px;">
-					<label class="control-label col-sm-6" for="modelType">Extra Hours:
-					</label>
-					<div class="col-sm-6">
-						<input type="text" class="col-sm-3"
-								placeholder="Enter leaves" name="name"
-								ng-model="editEmployeeSalary.extraHours" 
-								ng-model-options="{debounce: 1000}" ng-change="updateSalary()">
-							<label class="control-label" for="modelType">&nbsp;&nbsp;{{editEmployeeSalary.extraIncome | number : 2}}
-						</label>	
 					</div>
 				</div>
 				
@@ -224,25 +238,13 @@
 						</label>
 					</div>
 				</div>
-				<div class="form-group" style="margin-top: 10px;">
-					<label class="control-label col-sm-6" for="modelType">Leaves (days):
-					</label>
-					<div class="col-sm-6">
-						<input type="text" class="col-sm-3"
-								placeholder="Enter leaves" name="name"
-								ng-model="editEmployeeSalary.leaves" 
-								ng-model-options="{debounce: 1000}" ng-change="updateSalary()">
-							<label class="control-label" for="modelType">&nbsp;&nbsp;{{editEmployeeSalary.leavesDeduction | number : 2}}
-						</label>	
-					</div>
-				</div>
 				
 				<hr>
 				<div class="form-group" style="margin-top: 10px;">
 					<label class="control-label col-sm-6" for="modelType">Total
 						Deduction: </label>
 					<div class="col-sm-6">
-						<label class="control-label" for="modelType">{{totalDeduction | number : 2}}
+						<label class="control-label" for="modelType">{{editEmployeeSalary.totalDeduction | number : 2}}
 						</label>
 					</div>
 				</div>

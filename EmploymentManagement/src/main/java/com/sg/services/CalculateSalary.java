@@ -98,13 +98,13 @@ public class CalculateSalary {
 
     private Salary totalDeduction(final Employee employee, final Salary salObject) {
         float leavesDeduction = getLeavesDeduction(salObject);
-        double totalDeductions = leavesDeduction;
+        //double totalDeductions = leavesDeduction;
 //        if (isPackage) {
             final float basicSalary = Float.parseFloat(salObject.getBasicSalary());
             final double pfAmount = Math.round(getPf(employee, basicSalary) * 100.0) / 100.0;
             final double esicAmount = Math.round(getEsic(employee, totalSalary) * 100.0) / 100.0;
             final double netPay = Math.round((totalSalary - pfAmount - esicAmount) * 100.0) / 100.0;
-            totalDeductions = totalDeductions + pfAmount + esicAmount;
+            double totalDeductions = pfAmount + esicAmount;
             salObject.setPfAmount(String.valueOf(pfAmount));
             salObject.setEsicAmount(String.valueOf(esicAmount));
             salObject.setNetPay(String.valueOf(netPay));
@@ -113,7 +113,7 @@ public class CalculateSalary {
 //        }
 
         leavesDeduction = Math.round(leavesDeduction * 100.0 / 100.0);
-        totalDeductions = Math.round(totalDeductions * 100.0 / 100.0);
+        //totalDeductions = Math.round(totalDeductions * 100.0 / 100.0);
         salObject.setLeavesDeduction(String.valueOf(leavesDeduction));
         salObject.setTotalDeduction(String.valueOf(totalDeductions));
         return salObject;
