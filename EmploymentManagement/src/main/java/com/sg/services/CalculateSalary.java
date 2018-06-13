@@ -34,7 +34,7 @@ public class CalculateSalary {
     private final EmployeeAccount getEmployeeAccountObject(final String empId, final String salaryDate) {
         Map<String, String> empAccMap = new HashMap<>();
         empAccMap.put("employeeId", empId);
-        empAccMap.put("effectiveDate", salaryDate);
+        //empAccMap.put("effectiveDate", salaryDate);
 
         return (EmployeeAccount) mySqlDAO.getRecordOrderByLimit(Constants.EMPLOYEE_ACCOUNT_TABLE_NAME, empAccMap, "effectiveDate", "1");
     }

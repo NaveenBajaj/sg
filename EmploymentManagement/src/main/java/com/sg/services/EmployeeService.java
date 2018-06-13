@@ -65,8 +65,8 @@ public class EmployeeService {
 		final String effectiveDate = String.join("-",year,month,"01");
 		Map<String, String> map = new HashMap<>();
 		map.put("employeeId", empId);
-		map.put("effectiveDate", effectiveDate);
-		EmployeeAccount empAccount = (EmployeeAccount) mySqlDAO.getRecord(Constants.EMPLOYEE_ACCOUNT_TABLE_NAME, map);
+		//map.put("effectiveDate", effectiveDate);
+		EmployeeAccount empAccount = (EmployeeAccount) mySqlDAO.getRecordOrderByLimit(Constants.EMPLOYEE_ACCOUNT_TABLE_NAME, map,"effectiveDate","1");
 		return empAccount;
 	}
 	
