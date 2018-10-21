@@ -216,7 +216,7 @@ public class MySqlImpl implements MySqlDAO {
             String updateQuery =
                     "UPDATE " + tableName + " SET " +
                             record.entrySet().stream()
-                                    .map(x -> x.getKey() + " = " + x.getValue())
+                                    .map(x -> x.getKey() + " = '" + x.getValue()+"'")
                                     .collect(Collectors.joining(", ")) +
                             " WHERE " + key + " = " + keyValue;
             Connection conn = connection.getConnection();
